@@ -33,10 +33,6 @@ public class TerminNotizDBAdapter
 		dbHelper.close();
 	}
 
-	/**
-	 * Create a new todo If the todo is successfully created return the new
-	 * rowId for that note, otherwise return a -1 to indicate failure.
-	 */
 	public boolean updateTerminNotiz(String vorlesung, String notiz) 
 	{
 			String[] str = {vorlesung };
@@ -81,9 +77,6 @@ public class TerminNotizDBAdapter
 		return cursor;
 	}
 	
-	/**
-	 * Return a Cursor positioned at the defined todo
-	 */
 	public Cursor fetchTerminNotiz(int rowId) throws SQLException 
 	{
 		open();

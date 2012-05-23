@@ -36,10 +36,7 @@ public class UserDBAdapter {
 				dbHelper.close();
 			}
 
-			/**
-			 * Create a new todo If the todo is successfully created return the new
-			 * rowId for that note, otherwise return a -1 to indicate failure.
-			 */
+		
 			public long newUser(String username, String passwordClear) 
 			{
 				String passwordCrypted = "";
@@ -71,9 +68,6 @@ public class UserDBAdapter {
 			}
 			
 			
-			/**
-			 * Return a Cursor positioned at the defined todo
-			 */
 			public Cursor fetchUser(int rowId) throws SQLException 
 			{
 				open();

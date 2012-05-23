@@ -49,10 +49,6 @@ public class ResultsDBAdapter
 				dbHelper.close();
 			}
 
-			/**
-			 * Create a new todo If the todo is successfully created return the new
-			 * rowId for that note, otherwise return a -1 to indicate failure.
-			 */
 			public void createResult(String pruefungsnummer, String vorlesungsname, String datum, String credits, String note, String ectsnote, String status) 
 			{
 //				vorlesungsname= vorlesungsname.replace("Ä", "&Auml");
@@ -69,18 +65,11 @@ public class ResultsDBAdapter
 			}
 
 			
-			/**
-			 * Deletes todo
-			 */
 			public boolean deleteResult(long rowId) 
 			{
 				return db.delete(DB_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
 			}
 
-			
-			/**
-			 * Return a Cursor positioned at the defined todo
-			 */
 			public Cursor fetchResult(int rowId) throws SQLException 
 			{
 				open();

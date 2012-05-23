@@ -41,10 +41,6 @@ public class TerminFarbeDBAdapter
 			dbHelper.close();
 		}
 
-		/**
-		 * Create a new todo If the todo is successfully created return the new
-		 * rowId for that note, otherwise return a -1 to indicate failure.
-		 */
 		public long addVorlesungsFarbe(String vorlesung, String farbe) 
 		{
 			open();
@@ -54,9 +50,6 @@ public class TerminFarbeDBAdapter
 			return 0;
 		}
 
-		/**
-		 * Update the todo
-		 */
 		public boolean updateVorlesungsFarbe(long rowId, String vorlesung, String farbe) 
 		{
 			ContentValues values = createContentValues(vorlesung, farbe);
@@ -64,18 +57,12 @@ public class TerminFarbeDBAdapter
 			return db.update(DB_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0;
 		}
 
-		/**
-		 * Deletes todo
-		 */
 		public boolean deleteVorlesungsFarbe(long rowId) 
 		{
 			return db.delete(DB_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
 		}
 
 		
-		/**
-		 * Return a Cursor positioned at the defined todo
-		 */
 		public Cursor fetchVorlesungsFarbe(int rowId) throws SQLException 
 		{
 			open();

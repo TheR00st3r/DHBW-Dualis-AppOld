@@ -43,10 +43,7 @@ public class TerminDBAdapter
 		dbHelper.close();
 	}
 
-	/**
-	 * Create a new todo If the todo is successfully created return the new
-	 * rowId for that note, otherwise return a -1 to indicate failure.
-	 */
+	
 	public void createTermin(int id, String datum, String startzeit, String endzeit, String vorlesung, String raum)
 	{
 		// vorlesung= vorlesung.replace("Ä", "\u00C4");
@@ -134,9 +131,6 @@ public class TerminDBAdapter
 
 	}
 	
-	/**
-	 * Update the todo
-	 */
 	/*
 	 * public boolean updateTermin(long rowId, int id, String datum, String
 	 * startzeit, String endzeit, String vorlesung, String raum) { ContentValues
@@ -146,9 +140,7 @@ public class TerminDBAdapter
 	 * return db.update(DB_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0; }
 	 */
 
-	/**
-	 * Deletes todo
-	 */
+
 	public boolean deleteTermin(long rowId)
 	{
 		return db.delete(DB_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
