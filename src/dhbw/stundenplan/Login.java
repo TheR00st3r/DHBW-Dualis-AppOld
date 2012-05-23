@@ -27,7 +27,7 @@ import dhbw.stundenplan.google.GoogleKalender;
 import dhbw.stundenplan.google.OAuthManager;
 
 /**
- * Das ist ein Test
+ * 
  * @author DH10HAH
  *
  */
@@ -87,7 +87,7 @@ public class Login extends OptionActivity
 
 	/**
 	 * Login auf dem Dualis Server Wenn keine Vorlesungen vorhanden sind wird
-	 * die Datenbank aktualisiert Sonst wird die Vorlesungsansicht geöffnet Wenn
+	 * die Datenbank aktualisiert Sonst wird die Vorlesungsansicht geï¿½ffnet Wenn
 	 * keine Internetverbindung besteht wird eine Fehlermeldung ausgegeben und
 	 * man verbleibt auf dem LoginScreen
 	 * 
@@ -98,7 +98,7 @@ public class Login extends OptionActivity
 		final EditText username = (EditText) findViewById(R.id.editText1);
 		final EditText passwort = (EditText) findViewById(R.id.editText2);
 		Spinner spinner = (Spinner) findViewById(R.id.hochschulauswahl);
-		final TerminDBAdapter terminDBAdapter = new TerminDBAdapter(view.getContext()); // Für
+		final TerminDBAdapter terminDBAdapter = new TerminDBAdapter(view.getContext()); // Fï¿½r
 																						// Kontrolle
 																						// der
 																						// Daten
@@ -246,7 +246,7 @@ public class Login extends OptionActivity
 			} else
 			{
 
-				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal überprüfen.", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal ï¿½berprï¿½fen.", Toast.LENGTH_LONG).show();
 				closeDialog();
 
 			}
@@ -256,7 +256,7 @@ public class Login extends OptionActivity
 
 	/**
 	 * Kontrolliert ob die Logindaten Korrekt sind Wenn sie Korrekt sind wird
-	 * die Vorlesungsansicht geöffnet Wenn sie nicht Korrekt sind wird eine
+	 * die Vorlesungsansicht geï¿½ffnet Wenn sie nicht Korrekt sind wird eine
 	 * Fehlermeldung ausgegeben
 	 * 
 	 * @author DH10HAH
@@ -307,7 +307,7 @@ public class Login extends OptionActivity
 			} else
 			{
 				closeDialog();
-				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal überprüfen.", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal ï¿½berprï¿½fen.", Toast.LENGTH_LONG).show();
 			}
 		}
 
@@ -319,7 +319,7 @@ public class Login extends OptionActivity
 	ProgressDialog progressBar = null;
 
 	/**
-	 * Läd die Vorlesungstermine in den Google-Kalender
+	 * Lï¿½d die Vorlesungstermine in den Google-Kalender
 	 
 	 * @author DH10HAH
 	 *
