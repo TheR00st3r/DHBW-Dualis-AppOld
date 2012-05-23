@@ -26,6 +26,11 @@ import dhbw.stundenplan.database.UserDBAdapter;
 import dhbw.stundenplan.google.GoogleKalender;
 import dhbw.stundenplan.google.OAuthManager;
 
+/**
+ * Das ist ein Test
+ * @author DH10HAH
+ *
+ */
 public class Login extends OptionActivity
 {
 	Context context;
