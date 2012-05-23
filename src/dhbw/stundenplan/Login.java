@@ -27,7 +27,6 @@ import dhbw.stundenplan.google.GoogleKalender;
 import dhbw.stundenplan.google.OAuthManager;
 
 /**
- * Commit testen
  * 
  * @author DH10HAH
  *
