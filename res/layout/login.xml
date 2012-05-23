@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" 
+        android:hint="@string/username" android:layout_marginTop="20dp">
+    </EditText>
+
+    <Spinner
+        android:id="@+id/hochschulauswahl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:entries="@array/hochschulnamen" 
+        android:entryValues="@array/hochschuldomain"/>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword|textNoSuggestions"
+        android:hint="@string/password"/>
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zeigepasswort" 
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login" 
+        android:onClick="login" android:background="@drawable/dualis_button" android:padding="12dp"/>
+
+</LinearLayout>

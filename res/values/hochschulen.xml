@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hochschulnamen">
+        <item >Mannheim</item>
+        <item >Mosbach</item>
+        <item >Bad Mergentheim</item>
+        <item >Heilbronn</item>
+        <item >Karlsruhe</item>
+        <item >Stuttgart</item>
+        <item >Horb</item>
+        <item >Heidenheim</item>
+        <item >Villingen-Schwenningen</item>
+        <item >Lörrach</item>
+        <item >Ravensburg</item>
+        <item >Friedrichshafen</item>
+    </string-array>
+    <string-array name="hochschuldomain">
+        <item >dhbw-mannheim.de</item>
+        <item >dhbw-mosbach.de</item>
+        <item >dhbw-mosbach.de</item>
+        <item >dhbw-mosbach.de</item>
+        <item >dhbw-karlsruhe.de</item>
+        <item >lehre.dhbw-stuttgart.de</item>
+        <item >hb.dhbw-stuttgart.de</item>
+        <item >dhbw-heidenheim.de</item>
+        <item >dhbw-vs.de</item>
+        <item >dhbw-loerrach.de</item>
+        <item >dhbw-ravensburg.de</item>
+        <item >dhbw-ravensburg.de</item>
+    </string-array>
+    <string-array name="hochschulnummern">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    
+</resources>

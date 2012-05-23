@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NoTitleBar.Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme_Notizen" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:background="@drawable/popup_background" 
+    android:orientation="vertical"  >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:layout_marginLeft="30dp" >
+
+        <LinearLayout
+            android:id="@+id/notizContainer"
+            android:layout_width="fill_parent"
+            android:layout_height="133dp"
+            android:orientation="vertical" android:background="@drawable/background_repeat_2"/>
+
+    </ScrollView>
+
+    
+</RelativeLayout>

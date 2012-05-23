@@ -1,0 +1,81 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_element"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/popup_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/background_repeat_2"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewNotiz"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/background_notiz"
+        android:paddingLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/textViewNotiz"
+        android:paddingLeft="30dp" >
+
+        <EditText
+            android:id="@+id/editTextNotiz"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_repeat"
+            android:ellipsize="start"
+            android:gravity="top"
+            android:hint="@string/neuenotiz"
+            android:inputType="textMultiLine"
+            android:isScrollContainer="true"
+            android:paddingLeft="10dp" >
+
+            <requestFocus />
+        </EditText>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/end_data_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/dualis_button"
+            android:padding="10dp"
+            android:text="@string/save" android:layout_marginLeft="30dp"/>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dualis_button"
+            android:padding="10dp"
+            android:text="@string/abbrechen" android:layout_marginRight="5dp" android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

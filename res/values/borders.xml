@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="datum">1dp</string>
+    <string name="datumbotton">1dp</string>
+    <string name="uhrzeitrechts">2dp</string>
+    <string name="uhrzeitbottom">1dp</string>
+    <string name="termin">1dp</string>
+    <string name="terminbottom">1dp</string>
+
+    
+</resources>

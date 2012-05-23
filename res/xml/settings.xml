@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory 
+        android:title="Einstellungen"
+        android:key="firstcategory">
+	    <ListPreference 
+	        android:title="Anzahl Monate"
+	        android:key="anzahlmonate"
+	        android:summary="Gib an wie viele Monate geladen werden sollen"
+	        android:defaultValue="2"
+	        android:entries="@array/anzahlMonateStr" 
+	        android:entryValues="@array/anzahlMonateInt"/>
+<!-- 	    <ListPreference -->
+<!-- 	    	android:title="DH-Standort" -->
+<!-- 	    	android:key="lastSpinnerValue" -->
+<!-- 	    	android:summary="Gib an, an welcher DH du Studierst" -->
+<!-- 	    	android:defaultValue="0" -->
+<!-- 	    	android:entries="@array/hochschulnamen" -->
+<!-- 	    	android:entryValues="@array/hochschulnummern" /> -->
+	    <CheckBoxPreference android:key="googleCalendarSync" android:summaryOff="Synchronisiert nicht" android:summaryOn="Synchronisiert DHBW Dualis Kalender" android:title="@string/googleCalendarSync" android:defaultValue="false"/>
+    </PreferenceCategory>
+    
+    
+    
+ 
+
+</PreferenceScreen>

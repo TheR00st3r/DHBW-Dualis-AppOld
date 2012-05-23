@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/linearLayout0"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" android:background="@color/white" 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads">
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+		android:background="@drawable/grauverlauf">
+
+        <TextView
+            android:id="@+id/statusleiste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000" />
+
+    </LinearLayout>
+	
+	<android.support.v4.view.ViewPager
+	    android:id="@+id/viewPager"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dip"
+	    android:layout_weight="0.98" >
+
+    </android.support.v4.view.ViewPager>
+
+   
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="@drawable/dualis_button"
+            android:drawableRight="@drawable/notizuebersicht"
+            android:onClick="listeNotizenAuf2"
+            android:text="@string/notizen" 
+            />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="@drawable/dualis_button"
+            android:onClick="aktuelleWoche"
+            android:text="@string/aktuelleWoche" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:text="@string/aktualisieren" 
+            android:onClick="aktualisieren"
+            android:drawableRight="@drawable/refresh" android:background="@drawable/dualis_button"/>
+
+    </LinearLayout>
+
+      
+   	<com.google.ads.AdView 
+   	    android:id="@+id/adView"
+      	android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="a14f1fb4de723e8"
+        ads:test="true"
+        ads:adSize="BANNER"
+        ads:loadAdOnCreate="true"
+        ads:refreshInterval="60"/>
+    
+</LinearLayout>

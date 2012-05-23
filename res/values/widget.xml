@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="current">Aktuelle Vorlesung</string>
+    <string name="next">Nächste Vorlesung</string>
+    <string name="time">Uhrzeit</string>
+    <string name="vorlesungsName">Vorlesungsname</string>
+    <string name="raum">Raum</string>
+    <string name="startzeit">Beginn</string>
+    <string name="endzeit">Ende</string>
+    
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username">Benutzername z.B. i11005</string>
+    <string name="password">Passwort</string>
+    <string name="app_name">DHBW Dualis</string>
+    <string name="login">Login</string>
+    <string name="wie_viele_monate">1</string>
+    <string name="gespeicherte_termine">Zeige gespeicherte Termine</string>
+    <string name="tes">4dp</string><string name="monday">Mo</string>
+    <string name="tuesday">Di</string>
+    <string name="wednesday">Mi</string>
+    <string name="thursday">Do</string>
+    <string name="friday">Fr</string>
+    <string name="dreizeilen">\n \n \n</string><string name="weekend">Sa/So</string>
+    <string name="logout">Log out</string>
+    <string name="settings">Einstellungen</string>
+    <string name="reload">Aktualisieren</string>
+    <string name="cancel">zurück</string>
+    <string name="save">Speichern</string>
+    <string name="aktuelleWoche">Aktuelle Woche</string>
+    <string name="aktualisieren">Aktualisieren</string>
+    <string name="dhbwlogo">DHBW Logo</string>
+    <string name="neuenotiz">Neue Notiz eingeben</string>
+    <string name="notizen">Notizen</string>
+    <string name="abfrage_aktualisieren">Wollen sie jetzt aktualisieren?</string>
+    <string name="ja">Ja</string>
+    <string name="nein">Nein</string>
+    <string name="abbrechen">Abbrechech</string>
+    <string name="zeigepasswort">Passwort anzeigen</string>
+    <string name="noten">Noten</string>
+    <string name="loeschen">Notiz löschen</string>
+    <string name="googleCalendarSync">Google Kalender Sync</string>
+    
+    
+    
+    
+</resources>

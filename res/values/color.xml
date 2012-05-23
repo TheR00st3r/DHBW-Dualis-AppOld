@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="grey">#FF808080</color>
+    <color name="wochentag">#FFD3D3D3</color>
+    <color name="red">#FFFF0000</color>
+    <color name="widgettable1">#ffed1c24</color>
+    <color name="widgettable2">#fff36d74</color>
+    <color name="transparent">#00000000</color>
+</resources>

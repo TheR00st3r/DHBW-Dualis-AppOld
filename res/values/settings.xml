@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="anzahlMonateStr">
+        <item >2 Monat</item>
+        <item >3 Monate</item>
+        <item >4 Monate</item>
+<!--         <item >4 Monate</item> -->
+<!--         <item >5 Monate</item> -->
+<!--         <item >6 Monate</item> -->
+<!--         <item >7 Monate</item> -->
+<!--         <item >8 Monate</item> -->
+<!--         <item >9 Monate</item> -->
+<!--         <item >10 Monate</item> -->
+<!--         <item >11 Monate</item> -->
+<!--         <item >12 Monate</item> -->
+    </string-array>
+    <string-array name="anzahlMonateInt">
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+<!--         <item >4</item> -->
+<!--         <item >5</item> -->
+<!--         <item >6</item> -->
+<!--         <item >7</item> -->
+<!--         <item >8</item> -->
+<!--         <item >9</item> -->
+<!--         <item >10</item> -->
+<!--         <item >11</item> -->
+<!--         <item >12</item> -->
+    </string-array>
+
+</resources>
+
