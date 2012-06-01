@@ -34,6 +34,16 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
+        
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dualis_button"
+            android:drawableRight="@drawable/refresh"
+            android:onClick="aktualisieren"
+            android:text="@string/aktualisieren" android:layout_alignParentRight="true" android:layout_toRightOf="@id/button2"/>
+        
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
@@ -52,14 +62,6 @@
             android:onClick="aktuelleWoche"
             android:text="@string/aktuelleWoche" android:layout_centerHorizontal="true" android:layout_alignBottom="@id/button4" android:layout_alignTop="@id/button4"/>
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dualis_button"
-            android:drawableRight="@drawable/refresh"
-            android:onClick="aktualisieren"
-            android:text="@string/aktualisieren" android:layout_alignParentRight="true" android:layout_toRightOf="@id/button2"/>
     </RelativeLayout>
 
 </LinearLayout>
