@@ -51,7 +51,7 @@ import dhbw.stundenplan.google.OAuthManager;
  * @author DH10HAH
  * 
  */
-public class Wochenansicht extends OptionActivity// GestureActivity
+public class Wochenansicht extends OptionActivity
 {
 	final TextView[] tvNotizen = new TextView[this.anzahlMoeglicherTextViews];
 
@@ -114,26 +114,6 @@ public class Wochenansicht extends OptionActivity// GestureActivity
 			tvNotizen[i] = new TextView(context);
 			registerForContextMenu(tvNotizen[i]);
 		}
-
-		//
-		// AdView adView = (AdView) this.findViewById(R.id.adView);
-		// AdRequest request = new AdRequest();
-		//
-		// // /*
-		// // * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPORTANT
-		// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// // *
-		// // *
-		// // * TODO: Werbung wieder einfügen
-		// // *
-		// // *
-		// // * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPORTANT
-		// // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// // */
-		// // request.addTestDevice("B4469AA336DA4711CC56C74A0E2ECB92"); //Andy
-		// // request.addTestDevice("792971E7ECF89325C36959D0A656E4FA"); //Michi
-		//
-		// adView.loadAd(request);
 	}
 
 	/**

@@ -66,16 +66,4 @@
             android:drawableRight="@drawable/refresh" android:background="@drawable/dualis_button"/>
 
     </LinearLayout>
-
-      
-   	<com.google.ads.AdView 
-   	    android:id="@+id/adView"
-      	android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adUnitId="a14f1fb4de723e8"
-        ads:test="true"
-        ads:adSize="BANNER"
-        ads:loadAdOnCreate="true"
-        ads:refreshInterval="60"/>
-    
 </LinearLayout>
