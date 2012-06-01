@@ -1,69 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/linearLayout0"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/linearLayout0"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" android:background="@color/white" 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads">
+    android:background="@color/white"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-		android:background="@drawable/grauverlauf">
-
+        android:background="@drawable/grauverlauf"
+        android:orientation="vertical" >
+
         <TextView
             android:id="@+id/statusleiste"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000" />
-
     </LinearLayout>
-	
-	<android.support.v4.view.ViewPager
-	    android:id="@+id/viewPager"
-	    android:layout_width="fill_parent"
-	    android:layout_height="0dip"
-	    android:layout_weight="0.98" >
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.98" >
     </android.support.v4.view.ViewPager>
 
-   
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:background="@drawable/dualis_button"
             android:drawableRight="@drawable/notizuebersicht"
             android:onClick="listeNotizenAuf2"
-            android:text="@string/notizen" 
-            />
-
+            android:text="@string/notizen" android:layout_toLeftOf="@id/button2" android:layout_alignBottom="@id/button4" android:layout_alignTop="@id/button4"/>
+
         <Button
             android:id="@+id/button2"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/dualis_button"
             android:onClick="aktuelleWoche"
-            android:text="@string/aktuelleWoche" />
+            android:text="@string/aktuelleWoche" android:layout_centerHorizontal="true" android:layout_alignBottom="@id/button4" android:layout_alignTop="@id/button4"/>
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.25"
-            android:text="@string/aktualisieren" 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dualis_button"
+            android:drawableRight="@drawable/refresh"
             android:onClick="aktualisieren"
-            android:drawableRight="@drawable/refresh" android:background="@drawable/dualis_button"/>
+            android:text="@string/aktualisieren" android:layout_alignParentRight="true" android:layout_toRightOf="@id/button2"/>
+    </RelativeLayout>
 
-    </LinearLayout>
 </LinearLayout>
