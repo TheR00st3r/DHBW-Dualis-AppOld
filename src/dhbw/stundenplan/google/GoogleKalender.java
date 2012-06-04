@@ -190,19 +190,15 @@ public class GoogleKalender
 		Date curDate = new GregorianCalendar().getTime();
 		if (events.getItems() != null)
 		{
-			while (true)
+			for (Event event : events.getItems())
 			{
-				for (Event event : events.getItems())
+				// TODO: Datumsbereich festlegen.
+				System.out.println(event.getSummary());
+				if (curDate.before(new Date(event.getStart().getDateTime().getValue())))
 				{
-					// TODO: Datumsbereich festlegen.
-
-					System.out.println(event.getSummary());
-					if (curDate.before(new Date(event.getStart().getDateTime().getValue())))
+					if (event.getSummary().contains("Vorlesung"))
 					{
-						if (event.getSummary().contains("Vorlesung"))
-						{
-							service.events().delete(dhbwKalenderID, event.getId()).execute();
-						}
+						service.events().delete(dhbwKalenderID, event.getId()).execute();
 					}
 				}
 			}
