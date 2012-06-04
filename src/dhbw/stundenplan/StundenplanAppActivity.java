@@ -52,14 +52,9 @@ public class StundenplanAppActivity extends Activity
 					@SuppressWarnings("unused")
 					String username = userDBAdapter.getUsername(); // Kontrolle
 					@SuppressWarnings("unused")
-					String password = userDBAdapter.getPassword(); // ob User
-																	// Vorhanden
-																	// ist
+					String password = userDBAdapter.getPassword(); // ob User Vorhanden ist
 
-					Cursor c = terminDBAdapter.fetchTermine(1); // Kontrole ob
-																// Termine
-																// vorhanden
-																// sind.
+					Cursor c = terminDBAdapter.fetchTermine(1); // Kontrole ob Termine vorhanden sind.
 					int i = c.getCount();
 					c.close();
 					if (i != 0)
@@ -126,8 +121,7 @@ public class StundenplanAppActivity extends Activity
 				mSplashThread.notifyAll();
 			}
 		}
-		// TODO: Ursprünglich true, false zum Testen ob der Splashscreen damit
-		// übersprungen werden kann
+		// TODO: Ursprünglich true, false zum Testen ob der Splashscreen damit übersprungen werden kann
 		return false;
 	}
 

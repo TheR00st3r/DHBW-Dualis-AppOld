@@ -99,10 +99,7 @@ public class Login extends OptionActivity
 		final EditText username = (EditText) findViewById(R.id.editText1);
 		final EditText passwort = (EditText) findViewById(R.id.editText2);
 		Spinner spinner = (Spinner) findViewById(R.id.hochschulauswahl);
-		final TerminDBAdapter terminDBAdapter = new TerminDBAdapter(view.getContext()); // Fï¿½r
-																						// Kontrolle
-																						// der
-																						// Daten
+		final TerminDBAdapter terminDBAdapter = new TerminDBAdapter(view.getContext()); // Für Kontrolle der Daten
 		final UserDBAdapter userDBAdapter = new UserDBAdapter(view.getContext());
 		userDBAdapter.newUser(username.getText().toString() + "@" + getResources().getStringArray(R.array.hochschuldomain)[spinner.getSelectedItemPosition()], passwort.getText().toString());
 		userDBAdapter.close();

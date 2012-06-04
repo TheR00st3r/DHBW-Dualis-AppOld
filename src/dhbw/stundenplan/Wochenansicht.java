@@ -575,10 +575,13 @@ public class Wochenansicht extends OptionActivity
 	private boolean letzteRichtungNaechste = false;
 	private boolean ersteSeiteAktuell = false;
 
-	/*
+	/**
 	 * Wechselt die anzeige zur vorherigen Woche Methode nötig für Verknüpfung
 	 * mit wochenansicht3.xml: android:onClick sendet View mit !!!Beim Aufruf
 	 * der aktuellen Seite: dies Seite als Aktuelle
+	 * 
+	 * @param view
+	 * @throws ParseException
 	 */
 	public void vorherigeWoche(View view) throws ParseException
 	{
@@ -612,7 +615,7 @@ public class Wochenansicht extends OptionActivity
 	}
 
 	/**
-	 * !!!Beim Aufruf der aktuellen Seite: dies Seite als Aktuelle
+	 * !!!Beim Aufruf der aktuellen Seite: diese Seite als Aktuelle
 	 * 
 	 * @param view
 	 * @throws ParseException
@@ -621,10 +624,8 @@ public class Wochenansicht extends OptionActivity
 	{
 		currentDatePassed = false;
 		_letzterTermin = 1;
-		// ersteSeite = true;
 		ersteSeiteAktuell = true;
 		positionTmp = defaultPage;
-		// positionDiff = 0;
 		start = true;
 		naechste = false;
 		vorherige = false;
@@ -808,15 +809,7 @@ public class Wochenansicht extends OptionActivity
 					try
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
-						if (!(terminNotizDBAdapter.updateTerminNotiz(str[0], editText.getText().toString()))) // Macht
-																												// update
-																												// und
-																												// liefert
-																												// true
-																												// falls
-																												// der
-																												// Vorgang
-																												// scheitert
+						if (!(terminNotizDBAdapter.updateTerminNotiz(str[0], editText.getText().toString()))) // Macht update und liefert true falls der Vorgang scheitert
 						{
 							terminNotizDBAdapter.createTerminNotiz(str[0], editText.getText().toString());
 						}
@@ -862,15 +855,7 @@ public class Wochenansicht extends OptionActivity
 					try
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
-						if (!(terminNotizDBAdapter.updateTerminNotiz(daten.toString(), editText.getText().toString()))) // Macht
-																														// update
-																														// und
-																														// liefert
-																														// true
-																														// falls
-																														// der
-																														// Vorgang
-																														// scheitert
+						if (!(terminNotizDBAdapter.updateTerminNotiz(daten.toString(), editText.getText().toString())))  // Macht update und liefert true falls der Vorgang scheitert
 						{
 							terminNotizDBAdapter.createTerminNotiz(daten.toString(), editText.getText().toString());
 						}
@@ -1135,6 +1120,9 @@ public class Wochenansicht extends OptionActivity
 			return null;
 		}
 
+		/**
+		 * 
+		 */
 		public void onPostExecute(Object result)
 		{
 			if (internetConnection)
@@ -1203,6 +1191,9 @@ public class Wochenansicht extends OptionActivity
 			return null;
 		}
 
+		/**
+		 * 
+		 */
 		public void onPostExecute(Object result)
 		{
 			while (!googleKalender.ready)

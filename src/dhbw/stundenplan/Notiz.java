@@ -72,15 +72,7 @@ public class Notiz extends Activity
 					try
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
-						if (!(terminNotizDBAdapter.updateTerminNotiz(str[0], editText.getText().toString()))) // Macht
-																												// update
-																												// und
-																												// liefert
-																												// true
-																												// falls
-																												// der
-																												// Vorgang
-																												// scheitert
+						if (!(terminNotizDBAdapter.updateTerminNotiz(str[0], editText.getText().toString()))) // Macht update und liefert true falls der Vorgang scheitert
 						{
 							terminNotizDBAdapter.createTerminNotiz(str[0], editText.getText().toString());
 						}
@@ -127,15 +119,7 @@ public class Notiz extends Activity
 					try
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
-						if (!(terminNotizDBAdapter.updateTerminNotiz(daten, editText.getText().toString()))) // Macht
-																												// update
-																												// und
-																												// liefert
-																												// true
-																												// falls
-																												// der
-																												// Vorgang
-																												// scheitert
+						if (!(terminNotizDBAdapter.updateTerminNotiz(daten, editText.getText().toString()))) // Macht update und liefert true falls der Vorgang scheitert
 						{
 							terminNotizDBAdapter.createTerminNotiz(daten, editText.getText().toString());
 						}

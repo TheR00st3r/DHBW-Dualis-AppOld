@@ -92,7 +92,6 @@ public class Online
 				int id = 1;
 				boolean datumLetzte = false;
 				TerminDBAdapter terminDBAdapter = new TerminDBAdapter(context);
-				// terminDBAdapter.loescheDB();
 				terminDBAdapter.loescheAlleTermine();
 
 				while (m1.find())
