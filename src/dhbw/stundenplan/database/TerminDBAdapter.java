@@ -43,7 +43,6 @@ public class TerminDBAdapter
 		dbHelper.close();
 	}
 
-	
 	public void createTermin(int id, String datum, String startzeit, String endzeit, String vorlesung, String raum)
 	{
 		// vorlesung= vorlesung.replace("Ä", "\u00C4");
@@ -83,7 +82,8 @@ public class TerminDBAdapter
 		{
 			Date datum = new SimpleDateFormat("dd.MM.yyyy").parse(checkDatum);
 			datumStr = datum.toString();
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,32 +92,38 @@ public class TerminDBAdapter
 		if (datumStr.contains("Mon"))
 		{
 			datumInt = 1;
-		} else
+		}
+		else
 		{
 			if (datumStr.contains("Tue"))
 			{
 				datumInt = 2;
-			} else
+			}
+			else
 			{
 				if (datumStr.contains("Wed"))
 				{
 					datumInt = 3;
-				} else
+				}
+				else
 				{
 					if (datumStr.contains("Thu"))
 					{
 						datumInt = 4;
-					} else
+					}
+					else
 					{
 						if (datumStr.contains("Fri"))
 						{
 							datumInt = 5;
-						} else
+						}
+						else
 						{
 							if (datumStr.contains("Sat"))
 							{
 								datumInt = 6;
-							} else
+							}
+							else
 							{
 								if (datumStr.contains("Sun"))
 									datumInt = 7;
@@ -130,16 +136,14 @@ public class TerminDBAdapter
 		return datumInt;
 
 	}
-	
+
 	/*
 	 * public boolean updateTermin(long rowId, int id, String datum, String
 	 * startzeit, String endzeit, String vorlesung, String raum) { ContentValues
 	 * values = createContentValues(id, datum, startzeit, endzeit, vorlesung,
-	 * raum);
-	 * 
-	 * return db.update(DB_TABLE, values, KEY_ROWID + "=" + rowId, null) > 0; }
+	 * raum); return db.update(DB_TABLE, values, KEY_ROWID + "=" + rowId, null)
+	 * > 0; }
 	 */
-
 
 	public boolean deleteTermin(long rowId)
 	{
@@ -189,8 +193,7 @@ public class TerminDBAdapter
 
 	public Cursor fetchTermineByDatum(String datum) throws SQLException
 	{
-		String[] datumArray =
-		{ datum };
+		String[] datumArray = { datum };
 
 		open();
 		String strTmp = "SELECT " + KEY_DATUM + ", " + KEY_STARTZEIT + ", " + KEY_ENDZEIT + ", " + KEY_VORLESUNG + ", " + KEY_RAUM + ", " + KEY_WOCHENTAG + ", " + KEY_ROWID2 + " FROM " + DB_TABLE + " WHERE " + KEY_DATUM + "=?";
@@ -273,7 +276,8 @@ public class TerminDBAdapter
 					createTermin(id, datum, startzeit, endzeit, vorlesung, raum);
 					id++;
 				}
-			} else
+			}
+			else
 			{
 				String str[] = rauteGetrennt[i].split(" / ");
 				String str2[] = str[0].split(" - ");
@@ -309,11 +313,11 @@ public class TerminDBAdapter
 		try
 		{
 			String strTmp = "SELECT " + KEY_ROWID2 + " FROM " + DB_TABLE + " WHERE " + KEY_DATUM + " = ?";
-			Cursor c = db.rawQuery(strTmp, new String[]
-			{ datum });
+			Cursor c = db.rawQuery(strTmp, new String[] { datum });
 			c.moveToFirst();
 			id = c.getInt(0);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			id = 1;
 		}

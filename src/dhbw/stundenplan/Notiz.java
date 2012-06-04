@@ -18,7 +18,6 @@ import dhbw.stundenplan.database.TerminNotizDBAdapter;
  * Zeigt Notizen an
  * 
  * @author DH10HAH
- *
  */
 public class Notiz extends Activity
 {
@@ -57,10 +56,12 @@ public class Notiz extends Activity
 				editText.setText(c.getString(1));
 				c.close();
 				terminNotizDBAdapter.close();
-			} catch (SQLException se)
+			}
+			catch (SQLException se)
 			{
 				editText.setText("");
-			} catch (CursorIndexOutOfBoundsException ce)
+			}
+			catch (CursorIndexOutOfBoundsException ce)
 			{
 				editText.setText("");
 			}
@@ -84,7 +85,8 @@ public class Notiz extends Activity
 							terminNotizDBAdapter.createTerminNotiz(str[0], editText.getText().toString());
 						}
 						terminNotizDBAdapter.close();
-					} catch (SQLException se)
+					}
+					catch (SQLException se)
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
 						terminNotizDBAdapter.createTerminNotiz(str[0], editText.getText().toString());
@@ -94,7 +96,8 @@ public class Notiz extends Activity
 					finish();
 				}
 			});
-		} else
+		}
+		else
 		{
 			textViewVorlesung.setText(daten);
 			try
@@ -105,10 +108,12 @@ public class Notiz extends Activity
 				editText.setText(c.getString(1));
 				c.close();
 				terminNotizDBAdapter.close();
-			} catch (SQLException se)
+			}
+			catch (SQLException se)
 			{
 				editText.setText("");
-			} catch (CursorIndexOutOfBoundsException ce)
+			}
+			catch (CursorIndexOutOfBoundsException ce)
 			{
 				editText.setText("");
 			}
@@ -135,7 +140,8 @@ public class Notiz extends Activity
 							terminNotizDBAdapter.createTerminNotiz(daten, editText.getText().toString());
 						}
 						terminNotizDBAdapter.close();
-					} catch (SQLException se)
+					}
+					catch (SQLException se)
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
 						terminNotizDBAdapter.createTerminNotiz(daten, editText.getText().toString());

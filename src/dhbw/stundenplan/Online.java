@@ -29,7 +29,6 @@ import dhbw.stundenplan.database.TerminDBAdapter;
  * Bearbeitet alle verbindungen mit dem Dualis system
  * 
  * @author DH10HAH
- *
  */
 public class Online
 {
@@ -77,7 +76,8 @@ public class Online
 		{
 			Toast.makeText(context, "Login fehlgeschlagen, überprüfen sie ihre Logindaten", Toast.LENGTH_SHORT).show();
 			return false;
-		} else
+		}
+		else
 		{
 			String month = getCalenderMonth(args, wieVieleMonate);
 			if (month != null)
@@ -112,7 +112,8 @@ public class Online
 						}
 						datum = m1.group(1);
 						datumLetzte = true;
-					} else
+					}
+					else
 					{
 						String str[] = m1.group(1).split(" / ");
 						String str2[] = str[0].split(" - ");
@@ -155,7 +156,8 @@ public class Online
 		{
 			Toast.makeText(context, "Login fehlgeschlagen, überprüfen sie ihre Logindaten", Toast.LENGTH_SHORT).show();
 			return;
-		} else
+		}
+		else
 		{
 			String results = getResults(args);
 
@@ -267,7 +269,8 @@ public class Online
 			}
 
 			rd.close();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			ret = null;
 			// TODO: richtige exception
@@ -305,7 +308,8 @@ public class Online
 				}
 				rd.close();
 
-			} catch (Exception e)
+			}
+			catch (Exception e)
 			{
 				ret = null;
 			}
@@ -335,7 +339,7 @@ public class Online
 
 		String cookie = null;
 
-		if(username.contains("loerrach"))
+		if (username.contains("loerrach"))
 		{
 			Map<String, String> data = new HashMap<String, String>();
 			data.put("username", username.replace("@dhbw-loerrach.de", ""));
@@ -343,7 +347,7 @@ public class Online
 			try
 			{
 				cookie = doSubmit("https://portal.dhbw-loerrach.de/cas/login?service=https%3A%2F%2Fportal.dhbw-loerrach.de%2Fc%2Fportal%2Flogin", data);
-			} 
+			}
 			catch (Exception e)
 			{
 				// TODO Auto-generated catch block
@@ -353,7 +357,7 @@ public class Online
 		else
 		{
 			String data = "usrname=" + username + "&pass=" + passwort + "&APPNAME=CampusNet&PRGNAME=LOGINCHECK&ARGUMENTS=clino%2Cusrname%2Cpass%2Cmenuno%2Cpersno%2Cbrowser%2Cplatform&clino=000000000000001&menuno=000000&persno=00000000&browser=&platform=";
-			
+
 			URLConnection conn;
 			try
 			{
@@ -370,11 +374,13 @@ public class Online
 				{
 					cookie = m.group(1);
 				}
-			} catch (MalformedURLException e)
+			}
+			catch (MalformedURLException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -384,7 +390,6 @@ public class Online
 	}
 
 	/**
-	 * 
 	 * @param surl
 	 * @return
 	 * @throws MalformedURLException
@@ -448,10 +453,7 @@ public class Online
 		String ret = ",-A01." + curMonth + "." + curYear;
 		return ret;
 	}
-	
-	
-	
-	
+
 	/**
 	 * Login DHBW Lörrach
 	 * 
@@ -459,7 +461,7 @@ public class Online
 	 * @param data
 	 * @throws Exception
 	 */
-	public String doSubmit(String url, Map<String, String> data) throws Exception 
+	public String doSubmit(String url, Map<String, String> data) throws Exception
 	{
 		URL siteUrl = new URL(url);
 		HttpURLConnection conn = (HttpURLConnection) siteUrl.openConnection();
@@ -467,16 +469,16 @@ public class Online
 		conn.setRequestMethod("POST");
 		conn.setDoOutput(true);
 		conn.setDoInput(true);
-		
+
 		DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-		
+
 		Set<String> keys = data.keySet();
 		Iterator<String> keyIter = keys.iterator();
 		String content = "";
-		for(int i=0; keyIter.hasNext(); i++) 
+		for (int i = 0; keyIter.hasNext(); i++)
 		{
 			Object key = keyIter.next();
-			if(i!=0) 
+			if (i != 0)
 			{
 				content += "&";
 			}
@@ -488,12 +490,12 @@ public class Online
 		out.close();
 		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String line = "";
-		while((line=in.readLine())!=null) 
+		while ((line = in.readLine()) != null)
 		{
 			System.out.println(line);
 		}
 		in.close();
-		
+
 		return conn.getRequestProperty("Cookie");
 	}
 

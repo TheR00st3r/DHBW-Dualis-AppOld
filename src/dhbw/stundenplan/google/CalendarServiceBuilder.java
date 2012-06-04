@@ -13,7 +13,6 @@ import com.google.api.services.calendar.CalendarRequest;
 
 /**
  * @author alainv
- * 
  */
 public class CalendarServiceBuilder
 {

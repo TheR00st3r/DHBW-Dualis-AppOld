@@ -7,11 +7,9 @@ import android.preference.PreferenceManager;
 import android.widget.TextView;
 
 /**
- * Nur zum Optionen auszulesen und auszugeben
- * FÜr Programm nicht benötigt
+ * Nur zum Optionen auszulesen und auszugeben FÜr Programm nicht benötigt
  * 
  * @author DH10HAH
- *
  */
 public class SettingsHelper extends Activity
 {

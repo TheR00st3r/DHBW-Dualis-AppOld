@@ -1,17 +1,12 @@
 /*
- * Copyright (c) 2010 Google Inc.
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * Copyright (c) 2010 Google Inc. Licensed under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law
+ * or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 
 package dhbw.stundenplan.google;
@@ -128,7 +123,8 @@ public class OAuthManager
 		if (account != null)
 		{
 			doLogin(account.name, invalidate, activity, callback);
-		} else
+		}
+		else
 		{
 			SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(activity);
 			String accountName = preference.getString("selected_account_preference", "fehler");
@@ -162,7 +158,8 @@ public class OAuthManager
 			if (!invalidate && authToken != null)
 			{
 				callback.handleAuth(account, authToken);
-			} else
+			}
+			else
 			{
 				if (authToken != null && invalidate)
 				{
@@ -172,7 +169,8 @@ public class OAuthManager
 				}
 				authorize(account, invalidate, activity, callback);
 			}
-		} else
+		}
+		else
 		{
 			chooseAccount(accountName, invalidate, activity, callback);
 		}
@@ -211,7 +209,8 @@ public class OAuthManager
 						intent.setFlags(intent.getFlags() & ~Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivityForResult(intent, Constants.GET_LOGIN);
 						return;
-					} else if (result.containsKey(AccountManager.KEY_AUTHTOKEN))
+					}
+					else if (result.containsKey(AccountManager.KEY_AUTHTOKEN))
 					{
 						Log.e(Constants.TAG, "Got auth token: " + invalidate);
 						authToken = result.getString(AccountManager.KEY_AUTHTOKEN);
@@ -221,21 +220,25 @@ public class OAuthManager
 							// a new one.
 							accountManager.invalidateAuthToken(Constants.ACCOUNT_TYPE, authToken);
 							authorize(account, false, context, callback);
-						} else
+						}
+						else
 						{
 							// Return the token to the callback.
 							callback.handleAuth(account, authToken);
 						}
 					}
-				} catch (OperationCanceledException e)
+				}
+				catch (OperationCanceledException e)
 				{
 					Log.e(Constants.TAG, "Operation Canceled", e);
 					callback.handleAuth(null, null);
-				} catch (IOException e)
+				}
+				catch (IOException e)
 				{
 					Log.e(Constants.TAG, "IOException", e);
 					callback.handleAuth(null, null);
-				} catch (AuthenticatorException e)
+				}
+				catch (AuthenticatorException e)
 				{
 					Log.e(Constants.TAG, "Authentication Failed", e);
 					callback.handleAuth(null, null);
@@ -264,10 +267,12 @@ public class OAuthManager
 		if (accounts.length < 1)
 		{
 			callback.handleAuth(null, null);
-		} else if (accounts.length == 1)
+		}
+		else if (accounts.length == 1)
 		{
 			gotAccount(accounts[0], invalidate, activity, callback);
-		} else if (accountName != "fehler" && accountName.length() > 0)
+		}
+		else if (accountName != "fehler" && accountName.length() > 0)
 		{
 			for (Account account : accounts)
 			{
@@ -277,11 +282,9 @@ public class OAuthManager
 					return;
 				}
 			}
-			
-			
-			
-			
-		} else
+
+		}
+		else
 		{
 			// Let the user choose.
 			Log.e(Constants.TAG, "Multiple matching accounts found.");

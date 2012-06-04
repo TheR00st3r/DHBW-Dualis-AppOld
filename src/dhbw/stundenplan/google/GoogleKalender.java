@@ -20,9 +20,7 @@ import com.google.api.services.calendar.model.Events;
 import dhbw.stundenplan.database.TerminDBAdapter;
 
 /**
- * 
  * @author DH10HAH
- * 
  */
 public class GoogleKalender
 {
@@ -48,7 +46,8 @@ public class GoogleKalender
 			try
 			{
 				loescheTermine(account, authToken);
-			} catch (IOException e1)
+			}
+			catch (IOException e1)
 			{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -92,7 +91,8 @@ public class GoogleKalender
 							try
 							{
 								createTermin(account, authToken, cursor.getString(3), place, startDate, endDate);
-							} catch (IOException e)
+							}
+							catch (IOException e)
 							{
 								// TODO Auto-generated catch
 								// block

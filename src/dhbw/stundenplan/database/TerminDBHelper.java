@@ -10,14 +10,14 @@ public class TerminDBHelper extends SQLiteOpenHelper
 
 	private static final int DATABASE_VERSION = 1;
 
-	public TerminDBHelper(Context context) 
+	public TerminDBHelper(Context context)
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
 	// Method is called during creation of the database
 	@Override
-	public void onCreate(SQLiteDatabase database) 
+	public void onCreate(SQLiteDatabase database)
 	{
 		TermineDB.onCreate(database);
 	}
@@ -25,7 +25,7 @@ public class TerminDBHelper extends SQLiteOpenHelper
 	// Method is called during an upgrade of the database,
 	// e.g. if you increase the database version
 	@Override
-	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) 
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion)
 	{
 		TermineDB.onUpgrade(database, oldVersion, newVersion);
 	}

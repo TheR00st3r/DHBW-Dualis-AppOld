@@ -28,8 +28,8 @@ import dhbw.stundenplan.google.OAuthManager;
 
 /**
  * TestTest
+ * 
  * @author DH10HAH
- *
  */
 public class Login extends OptionActivity
 {
@@ -70,7 +70,8 @@ public class Login extends OptionActivity
 					int start = passwort.getSelectionStart();
 					passwort.setTransformationMethod(null);
 					passwort.setSelection(start, end);
-				} else
+				}
+				else
 				{
 					int end = passwort.getSelectionStart();
 					int start = passwort.getSelectionStart();
@@ -87,9 +88,9 @@ public class Login extends OptionActivity
 
 	/**
 	 * Login auf dem Dualis Server Wenn keine Vorlesungen vorhanden sind wird
-	 * die Datenbank aktualisiert Sonst wird die Vorlesungsansicht ge�ffnet Wenn
-	 * keine Internetverbindung besteht wird eine Fehlermeldung ausgegeben und
-	 * man verbleibt auf dem LoginScreen
+	 * die Datenbank aktualisiert Sonst wird die Vorlesungsansicht ge�ffnet
+	 * Wenn keine Internetverbindung besteht wird eine Fehlermeldung ausgegeben
+	 * und man verbleibt auf dem LoginScreen
 	 * 
 	 * @param view
 	 */
@@ -116,13 +117,15 @@ public class Login extends OptionActivity
 				showDialog("Aktualisiere Termine");
 				new DownloadTermine().execute("");
 
-			} else
+			}
+			else
 			{
 				showDialog("Login");
 				new CheckLogin().execute("");
 
 			}
-		} else
+		}
+		else
 		{
 			Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
 		}
@@ -130,7 +133,7 @@ public class Login extends OptionActivity
 
 	private void showDialog(String text)
 	{
-		if(progressDialog==null)
+		if (progressDialog == null)
 		{
 			progressDialog = new ProgressDialog(context);
 		}
@@ -140,7 +143,7 @@ public class Login extends OptionActivity
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 	}
-	
+
 	private void closeDialog()
 	{
 		if (progressDialog.isShowing())
@@ -148,7 +151,7 @@ public class Login extends OptionActivity
 			progressDialog.dismiss();
 		}
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -163,10 +166,10 @@ public class Login extends OptionActivity
 	{
 		switch (item.getItemId())
 		{
-		case R.id.item3:
-			intent.setClass(this, Settings.class);
-			startActivity(intent);
-			break;
+			case R.id.item3:
+				intent.setClass(this, Settings.class);
+				startActivity(intent);
+				break;
 
 		}
 		return true;
@@ -174,11 +177,9 @@ public class Login extends OptionActivity
 
 	/**
 	 * Startet einen Ladedialog, und aktualisiert die TerminDB
-	 * 
 	 * DownloadTermine().execute("");
 	 * 
 	 * @author DH10HAH
-	 *
 	 */
 	private class DownloadTermine extends AsyncTask<String, Integer, Object>
 	{
@@ -205,11 +206,13 @@ public class Login extends OptionActivity
 				{
 					ladeTermineInHash();
 					loginKorrekt = true;
-				} else
+				}
+				else
 				{
 					loginKorrekt = false;
 				}
-			} else
+			}
+			else
 			{
 				Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
 			}
@@ -224,7 +227,7 @@ public class Login extends OptionActivity
 				if (sharedPreferences.getBoolean("googleCalendarSync", false))
 				{
 					showDialog("Lade Termine in Googlekalender");
-					
+
 					OAuthManager.getInstance().doLogin(true, activity, new OAuthManager.AuthHandler()
 					{
 
@@ -237,13 +240,15 @@ public class Login extends OptionActivity
 						}
 					});
 
-				} else
+				}
+				else
 				{
 					intent.setClass(context, Wochenansicht.class);
 					startActivityForResult(intent, 0);
 					finish();
 				}
-			} else
+			}
+			else
 			{
 
 				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal �berpr�fen.", Toast.LENGTH_LONG).show();
@@ -260,7 +265,6 @@ public class Login extends OptionActivity
 	 * Fehlermeldung ausgegeben
 	 * 
 	 * @author DH10HAH
-	 *
 	 */
 	private class CheckLogin extends AsyncTask<String, Integer, Object>
 	{
@@ -283,12 +287,14 @@ public class Login extends OptionActivity
 				{
 					ladeTermineInHash();
 					loginKorrekt = true;
-				} else
+				}
+				else
 				{
 					loginKorrekt = false;
 					userDBAdapter.deleteUserDB();
 				}
-			} else
+			}
+			else
 			{
 				Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
 			}
@@ -304,7 +310,8 @@ public class Login extends OptionActivity
 				startActivity(intent);
 				closeDialog();
 				finish();
-			} else
+			}
+			else
 			{
 				closeDialog();
 				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal �berpr�fen.", Toast.LENGTH_LONG).show();
@@ -320,9 +327,8 @@ public class Login extends OptionActivity
 
 	/**
 	 * L�d die Vorlesungstermine in den Google-Kalender
-	 
+	 * 
 	 * @author DH10HAH
-	 *
 	 */
 	private class TermineInKalender extends AsyncTask<String, Integer, Object>
 	{
@@ -340,7 +346,8 @@ public class Login extends OptionActivity
 				googleKalender.ladeTermineInKalender(account, authToken);// schreibeTermineInKalender();
 
 				internetConnection = true;
-			} else
+			}
+			else
 			{
 				internetConnection = false;
 			}
@@ -359,7 +366,8 @@ public class Login extends OptionActivity
 				startActivityForResult(intent, 0);
 				closeDialog();
 				finish();
-			} else
+			}
+			else
 			{
 				closeDialog();
 				Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();

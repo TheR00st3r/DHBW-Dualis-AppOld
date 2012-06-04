@@ -17,7 +17,6 @@ import dhbw.stundenplan.database.UserDBAdapter;
  * Zeigt provisorisch die Prüfungsergebnisse an
  * 
  * @author DH10HAH
- *
  */
 public class Noten extends OptionActivity
 {
@@ -71,7 +70,8 @@ public class Noten extends OptionActivity
 			String data = "<table border=\"1\"><th>Nr.</th><th>Vorlesung</th><th>Note</th><th>ECTS</th><th>Status</th>" + stringBuilder + "</tbale>";
 
 			wv.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
-		} else
+		}
+		else
 		{
 			wv.loadDataWithBaseURL(null, "Bitte erst die Datenbank Aktualisieren", "text/html", "utf-8", null);
 		}
@@ -82,8 +82,6 @@ public class Noten extends OptionActivity
 
 	/**
 	 * Startet einen Ladedialog, und läd die Ergebnisse herunter
-	 * 
-	 * 
 	 */
 	private class DownloadResults extends AsyncTask<String, Integer, Object>
 	{
@@ -106,7 +104,8 @@ public class Noten extends OptionActivity
 				online.ladeResultsInDB(username, password, context);
 				// publishProgress(100);
 				internetConnection = true;
-			} else
+			}
+			else
 			{
 				internetConnection = false;
 			}
@@ -120,7 +119,8 @@ public class Noten extends OptionActivity
 				schreibeErgebnisse();
 				progressDialog.dismiss();
 
-			} else
+			}
+			else
 			{
 				progressDialog.dismiss();
 				Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();

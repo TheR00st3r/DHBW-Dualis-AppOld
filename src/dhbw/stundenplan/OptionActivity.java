@@ -15,7 +15,6 @@ import dhbw.stundenplan.database.TerminDBAdapter;
  * Activity mit einem Optionsmenü
  * 
  * @author DH10HAH
- *
  */
 public abstract class OptionActivity extends Activity
 {
@@ -43,7 +42,8 @@ public abstract class OptionActivity extends Activity
 		if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected())
 		{
 			return true;
-		} else
+		}
+		else
 		{
 			System.out.println("Internet Connection Not Present");
 			return false;
@@ -52,9 +52,7 @@ public abstract class OptionActivity extends Activity
 
 	/**
 	 * Läd die Termine in eine HashMap zum Übergeben der Termine von einer in
-	 * die andere Activity
-	 * 
-	 * Schnellerer zugriff auf Termine
+	 * die andere Activity Schnellerer zugriff auf Termine
 	 * 
 	 * @return
 	 */

@@ -19,7 +19,6 @@ import dhbw.stundenplan.database.TerminNotizDBAdapter;
  * Zeigt Notizüberischt an
  * 
  * @author DH10HAH
- *
  */
 public class NotizUebersicht extends Activity
 {
@@ -78,7 +77,7 @@ public class NotizUebersicht extends Activity
 						}
 					});
 					i++;
-					
+
 					tvNotizen[i] = new TextView(context);
 					tvNotizen[i].setText(str2);
 					tvNotizen[i].setTextSize(18);
@@ -110,7 +109,8 @@ public class NotizUebersicht extends Activity
 
 				Toast.makeText(getApplicationContext(), "Keine Notizen vorhanden. Klicke eine Vorlesung an um eine Notiz zu erstellen", Toast.LENGTH_LONG).show();
 			}
-		} else
+		}
+		else
 		{
 			this.finish();// TODO: Funktioniert dass so?
 			Toast.makeText(getApplicationContext(), "Keine Notizen vorhanden. Klicke eine Vorlesung an um eine Notiz zu erstellen", Toast.LENGTH_LONG).show();

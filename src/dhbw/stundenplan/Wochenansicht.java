@@ -49,7 +49,6 @@ import dhbw.stundenplan.google.OAuthManager;
  * Zeigt die Termine wochenweise an
  * 
  * @author DH10HAH
- * 
  */
 public class Wochenansicht extends OptionActivity
 {
@@ -133,7 +132,8 @@ public class Wochenansicht extends OptionActivity
 		{
 			Date datum = new SimpleDateFormat("dd.MM.yyyy").parse(checkDatum);
 			datumStr = datum.toString();
-		} catch (ParseException e)
+		}
+		catch (ParseException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -141,32 +141,38 @@ public class Wochenansicht extends OptionActivity
 		if (datumStr.contains("Mon"))
 		{
 			datumInt = 1;
-		} else
+		}
+		else
 		{
 			if (datumStr.contains("Tue"))
 			{
 				datumInt = 2;
-			} else
+			}
+			else
 			{
 				if (datumStr.contains("Wed"))
 				{
 					datumInt = 3;
-				} else
+				}
+				else
 				{
 					if (datumStr.contains("Thu"))
 					{
 						datumInt = 4;
-					} else
+					}
+					else
 					{
 						if (datumStr.contains("Fri"))
 						{
 							datumInt = 5;
-						} else
+						}
+						else
 						{
 							if (datumStr.contains("Sat"))
 							{
 								datumInt = 6;
-							} else
+							}
+							else
 							{
 								if (datumStr.contains("Sun"))
 									datumInt = 7;
@@ -262,14 +268,16 @@ public class Wochenansicht extends OptionActivity
 				if (currentDatePassed && wochentagStr.contains("7"))
 				{
 					wochenstart = true;
-				} else
+				}
+				else
 				{
 					if (currentDatePassed)
 					{
 						i = i - 2;
 					}
 				}
-			} else
+			}
+			else
 			{
 				if (i < 1)
 				{
@@ -282,241 +290,250 @@ public class Wochenansicht extends OptionActivity
 				switch (wochentag)
 				// 1=Montag 2=Dienstag 3=Mittwoch 4=Donnerstag 5=Freitag
 				{
-				case 1:
-				{
-					_naechsteWoche = 1;
-					if (_naechsteWoche < _naechsteWoche2)
+					case 1:
 					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						tv01.setText(this.getString(R.string.monday) + " " + datumStr.substring(0, 6));
-						if (vorlesungStr.length() != 0)
+						_naechsteWoche = 1;
+						if (_naechsteWoche < _naechsteWoche2)
 						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout2.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
+							abbrechen = true;
+							break;
 						}
-						_naechsteWoche2 = _naechsteWoche;
+						else
+						{
+							tv01.setText(this.getString(R.string.monday) + " " + datumStr.substring(0, 6));
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout2.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					case 2:
+					{
+						_naechsteWoche = 2;
+						if (_naechsteWoche < _naechsteWoche2)
+						{
+							abbrechen = true;
+							break;
+						}
+						else
+						{
+							tv02.setText(this.getString(R.string.tuesday) + " " + datumStr.substring(0, 6));
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								int farbe = terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr);
+								tv[i2].setBackgroundColor(farbe);
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout3.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					case 3:
+					{
+						_naechsteWoche = 3;
+						if (_naechsteWoche < _naechsteWoche2)
+						{
+							abbrechen = true;
+							break;
+						}
+						else
+						{
+							tv03.setText(this.getString(R.string.wednesday) + " " + datumStr.substring(0, 6));
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout4.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					case 4:
+					{
+						_naechsteWoche = 4;
+						if (_naechsteWoche < _naechsteWoche2)
+						{
+							abbrechen = true;
+							break;
+						}
+						else
+						{
+							tv04.setText(this.getString(R.string.thursday) + " " + datumStr.substring(0, 6));
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout5.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					case 5:
+					{
+						_naechsteWoche = 5;
+						if (_naechsteWoche < _naechsteWoche2)
+						{
+							abbrechen = true;
+							break;
+						}
+						else
+						{
+							tv05.setText(this.getString(R.string.friday) + " " + datumStr.substring(0, 6));
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout6.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					case 6:
+					{
+						_naechsteWoche = 6;
+						if (_naechsteWoche < _naechsteWoche2)
+						{
+							abbrechen = true;
+							break;
+						}
+						else
+						{
+							if (tv06.getText() == "")
+							{
+								tv06.setText(datumStr.substring(0, 3));
+							}
+							else
+							{
+								tv06.setText(this.getString(R.string.weekend) + " " + datumStr.substring(0, 3) + "/" + tv06.getText());
+							}
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout7.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					case 7:
+					{
+						_naechsteWoche = 7;
+						if (_naechsteWoche < _naechsteWoche2)
+						{
+							abbrechen = true;
+							break;
+						}
+						else
+						{
+							if (tv06.getText() != "")
+							{
+								tv06.setText(this.getString(R.string.weekend) + " " + tv06.getText() + "/" + datumStr.substring(0, 6));
+							}
+							else
+							{
+								tv06.setText(datumStr.substring(0, 6));
+							}
+							if (vorlesungStr.length() != 0)
+							{
+								tv[i2] = new TextView(this);
+								tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
+								tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
+								tv[i2].setTextColor(textColor);
+								tv[i2].setLayoutParams(params);
+								linearLayout7.addView(tv[i2]);
+								final int x = i2;
+								tv[i2].setOnClickListener(new View.OnClickListener()
+								{
+									public void onClick(View v)
+									{
+										terminOeffnen(tv[x].getText());
+									}
+								});
+							}
+							_naechsteWoche2 = _naechsteWoche;
+							break;
+						}
+					}
+					default:
+					{
+						_naechsteWoche = 0;
 						break;
 					}
-				}
-				case 2:
-				{
-					_naechsteWoche = 2;
-					if (_naechsteWoche < _naechsteWoche2)
-					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						tv02.setText(this.getString(R.string.tuesday) + " " + datumStr.substring(0, 6));
-						if (vorlesungStr.length() != 0)
-						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							int farbe = terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr);
-							tv[i2].setBackgroundColor(farbe);
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout3.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
-						}
-						_naechsteWoche2 = _naechsteWoche;
-						break;
-					}
-				}
-				case 3:
-				{
-					_naechsteWoche = 3;
-					if (_naechsteWoche < _naechsteWoche2)
-					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						tv03.setText(this.getString(R.string.wednesday) + " " + datumStr.substring(0, 6));
-						if (vorlesungStr.length() != 0)
-						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout4.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
-						}
-						_naechsteWoche2 = _naechsteWoche;
-						break;
-					}
-				}
-				case 4:
-				{
-					_naechsteWoche = 4;
-					if (_naechsteWoche < _naechsteWoche2)
-					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						tv04.setText(this.getString(R.string.thursday) + " " + datumStr.substring(0, 6));
-						if (vorlesungStr.length() != 0)
-						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout5.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
-						}
-						_naechsteWoche2 = _naechsteWoche;
-						break;
-					}
-				}
-				case 5:
-				{
-					_naechsteWoche = 5;
-					if (_naechsteWoche < _naechsteWoche2)
-					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						tv05.setText(this.getString(R.string.friday) + " " + datumStr.substring(0, 6));
-						if (vorlesungStr.length() != 0)
-						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout6.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
-						}
-						_naechsteWoche2 = _naechsteWoche;
-						break;
-					}
-				}
-				case 6:
-				{
-					_naechsteWoche = 6;
-					if (_naechsteWoche < _naechsteWoche2)
-					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						if (tv06.getText() == "")
-						{
-							tv06.setText(datumStr.substring(0, 3));
-						} else
-						{
-							tv06.setText(this.getString(R.string.weekend) + " " + datumStr.substring(0, 3) + "/" + tv06.getText());
-						}
-						if (vorlesungStr.length() != 0)
-						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout7.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
-						}
-						_naechsteWoche2 = _naechsteWoche;
-						break;
-					}
-				}
-				case 7:
-				{
-					_naechsteWoche = 7;
-					if (_naechsteWoche < _naechsteWoche2)
-					{
-						abbrechen = true;
-						break;
-					} else
-					{
-						if (tv06.getText() != "")
-						{
-							tv06.setText(this.getString(R.string.weekend) + " " + tv06.getText() + "/" + datumStr.substring(0, 6));
-						} else
-						{
-							tv06.setText(datumStr.substring(0, 6));
-						}
-						if (vorlesungStr.length() != 0)
-						{
-							tv[i2] = new TextView(this);
-							tv[i2].setText(Html.fromHtml("" + vorlesungStr + "<br />" + startzeitStr + "-" + endzeitStr + "<br />" + raumStr));
-							tv[i2].setBackgroundColor(terminFarbeDBAdapter.gibVorelsungsFarbe(vorlesungStr));
-							tv[i2].setTextColor(textColor);
-							tv[i2].setLayoutParams(params);
-							linearLayout7.addView(tv[i2]);
-							final int x = i2;
-							tv[i2].setOnClickListener(new View.OnClickListener()
-							{
-								public void onClick(View v)
-								{
-									terminOeffnen(tv[x].getText());
-								}
-							});
-						}
-						_naechsteWoche2 = _naechsteWoche;
-						break;
-					}
-				}
-				default:
-				{
-					_naechsteWoche = 0;
-					break;
-				}
 				}
 			}
 			_letzterTermin = i;
@@ -527,14 +544,9 @@ public class Wochenansicht extends OptionActivity
 	}
 
 	/**
-	 * Wechselt die anzeige zur nächste Woche
-	 * 
-	 * Methode nötig für Verknüpfung mit wochenansicht3.xml: android:onClick
-	 * sendet View mit
-	 * 
-	 * 
-	 * 
-	 * !!!Beim Aufruf der aktuellen Seite: dies Seite als Nächste
+	 * Wechselt die anzeige zur nächste Woche Methode nötig für Verknüpfung mit
+	 * wochenansicht3.xml: android:onClick sendet View mit !!!Beim Aufruf der
+	 * aktuellen Seite: dies Seite als Nächste
 	 * 
 	 * @param view
 	 * @throws ParseException
@@ -564,13 +576,9 @@ public class Wochenansicht extends OptionActivity
 	private boolean ersteSeiteAktuell = false;
 
 	/*
-	 * Wechselt die anzeige zur vorherigen Woche
-	 * 
-	 * Methode nötig für Verknüpfung mit wochenansicht3.xml: android:onClick
-	 * sendet View mit
-	 * 
-	 * 
-	 * !!!Beim Aufruf der aktuellen Seite: dies Seite als Aktuelle
+	 * Wechselt die anzeige zur vorherigen Woche Methode nötig für Verknüpfung
+	 * mit wochenansicht3.xml: android:onClick sendet View mit !!!Beim Aufruf
+	 * der aktuellen Seite: dies Seite als Aktuelle
 	 */
 	public void vorherigeWoche(View view) throws ParseException
 	{
@@ -583,7 +591,8 @@ public class Wochenansicht extends OptionActivity
 		if ((positionDiff == 1) || (naechste && !vorherige))
 		{
 			calendar.add(Calendar.DATE, -(7 * (positionDiff + 1) + 1));
-		} else
+		}
+		else
 		{
 			calendar.add(Calendar.DATE, -(7 * (positionDiff + 1) + 1));
 		}
@@ -715,7 +724,8 @@ public class Wochenansicht extends OptionActivity
 				popupWindow.dismiss();
 				Toast.makeText(getApplicationContext(), "Keine Notizen vorhanden. Klicke eine Vorlesung an um eine Notiz zu erstellen", Toast.LENGTH_LONG).show();
 			}
-		} else
+		}
+		else
 		{
 			popupWindow.dismiss();
 			Toast.makeText(getApplicationContext(), "Keine Notizen vorhanden. Klicke eine Vorlesung an um eine Notiz zu erstellen", Toast.LENGTH_LONG).show();
@@ -782,10 +792,12 @@ public class Wochenansicht extends OptionActivity
 				editText.setText(c.getString(1));
 				c.close();
 				terminNotizDBAdapter.close();
-			} catch (SQLException se)
+			}
+			catch (SQLException se)
 			{
 				editText.setText("");
-			} catch (CursorIndexOutOfBoundsException ce)
+			}
+			catch (CursorIndexOutOfBoundsException ce)
 			{
 				editText.setText("");
 			}
@@ -809,7 +821,8 @@ public class Wochenansicht extends OptionActivity
 							terminNotizDBAdapter.createTerminNotiz(str[0], editText.getText().toString());
 						}
 						terminNotizDBAdapter.close();
-					} catch (SQLException se)
+					}
+					catch (SQLException se)
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
 						terminNotizDBAdapter.createTerminNotiz(str[0], editText.getText().toString());
@@ -818,7 +831,8 @@ public class Wochenansicht extends OptionActivity
 					popupWindow.dismiss();
 				}
 			});
-		} else
+		}
+		else
 		{
 			textViewVorlesung.setText(daten.toString());
 			try
@@ -829,10 +843,12 @@ public class Wochenansicht extends OptionActivity
 				editText.setText(c.getString(1));
 				c.close();
 				terminNotizDBAdapter.close();
-			} catch (SQLException se)
+			}
+			catch (SQLException se)
 			{
 				editText.setText("");
-			} catch (CursorIndexOutOfBoundsException ce)
+			}
+			catch (CursorIndexOutOfBoundsException ce)
 			{
 				editText.setText("");
 			}
@@ -859,7 +875,8 @@ public class Wochenansicht extends OptionActivity
 							terminNotizDBAdapter.createTerminNotiz(daten.toString(), editText.getText().toString());
 						}
 						terminNotizDBAdapter.close();
-					} catch (SQLException se)
+					}
+					catch (SQLException se)
 					{
 						TerminNotizDBAdapter terminNotizDBAdapter = new TerminNotizDBAdapter(context);
 						terminNotizDBAdapter.createTerminNotiz(daten.toString(), editText.getText().toString());
@@ -883,7 +900,6 @@ public class Wochenansicht extends OptionActivity
 	 * Klasse die die aktuelle angezeigte Seite zurück gibt
 	 * 
 	 * @author DH10HAH
-	 * 
 	 */
 	private class AwesomePagerAdapter extends PagerAdapter
 	{
@@ -972,7 +988,8 @@ public class Wochenansicht extends OptionActivity
 			TextView statusLeiste = (TextView) findViewById(R.id.statusleiste);
 			statusLeiste.setText("Aktuelle Kalenderwoche: " + kw.get(Calendar.WEEK_OF_YEAR));
 			fuelleTermine();
-		} else
+		}
+		else
 		{
 			if (positionTmp < position)
 			{
@@ -982,14 +999,16 @@ public class Wochenansicht extends OptionActivity
 				{
 					naechsteWoche(null);
 					kw.add(Calendar.DATE, 7);
-				} catch (ParseException e)
+				}
+				catch (ParseException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				naechste = true;
 
-			} else
+			}
+			else
 			{
 				viewPage = mInflater.inflate(R.layout.wochenansicht0, null);
 				positionDiff = positionTmp - position;
@@ -997,7 +1016,8 @@ public class Wochenansicht extends OptionActivity
 				{
 					vorherigeWoche(null);
 					kw.add(Calendar.DATE, -7);
-				} catch (ParseException e)
+				}
+				catch (ParseException e)
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1034,46 +1054,46 @@ public class Wochenansicht extends OptionActivity
 	{
 		switch (item.getItemId())
 		{
-		case R.id.item1:
-		{
-			/*
-			 * LOGOUT UserDB wird geleert(Leerer User eingetragen) und
-			 * LoginScreen aufgerufen
-			 */
-			UserDBAdapter userDBAdapter = new UserDBAdapter(this);
-			userDBAdapter.deleteUserDB();
-			intent.setClass(this, Login.class);
-			startActivity(intent);
-			finish();
-			break;
-		}
+			case R.id.item1:
+			{
+				/*
+				 * LOGOUT UserDB wird geleert(Leerer User eingetragen) und
+				 * LoginScreen aufgerufen
+				 */
+				UserDBAdapter userDBAdapter = new UserDBAdapter(this);
+				userDBAdapter.deleteUserDB();
+				intent.setClass(this, Login.class);
+				startActivity(intent);
+				finish();
+				break;
+			}
 
-		case R.id.item2:
-		{
-			intent.setClass(this, Wochenansicht.class);
+			case R.id.item2:
+			{
+				intent.setClass(this, Wochenansicht.class);
 
-			progressDialog = new ProgressDialog(context);
-			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-			progressDialog.setMessage("Aktualisiere Termine");
-			progressDialog.setCancelable(false);
-			progressDialog.show();
-			new DownloadTermine().execute("");
-			break;
-		}
+				progressDialog = new ProgressDialog(context);
+				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				progressDialog.setMessage("Aktualisiere Termine");
+				progressDialog.setCancelable(false);
+				progressDialog.show();
+				new DownloadTermine().execute("");
+				break;
+			}
 
-		case R.id.item3:
-		{
-			intent.setClass(this, Settings.class);
-			startActivity(intent);
-			break;
-		}
+			case R.id.item3:
+			{
+				intent.setClass(this, Settings.class);
+				startActivity(intent);
+				break;
+			}
 
-		case R.id.item4:
-		{
-			intent.setClass(this, Noten.class);
-			startActivity(intent);
-			break;
-		}
+			case R.id.item4:
+			{
+				intent.setClass(this, Noten.class);
+				startActivity(intent);
+				break;
+			}
 
 		}
 		return true;
@@ -1083,7 +1103,6 @@ public class Wochenansicht extends OptionActivity
 	 * Startet einen Ladedialog, und aktualisiert die TerminDB
 	 * 
 	 * @author DH10HAH
-	 * 
 	 */
 	private class DownloadTermine extends AsyncTask<String, Integer, Object>
 	{
@@ -1108,7 +1127,8 @@ public class Wochenansicht extends OptionActivity
 				online.ladeTermineInDB(username, password, Integer.parseInt(anzahlMonate), context);
 				ladeTermineInHash();
 				internetConnection = true;
-			} else
+			}
+			else
 			{
 				internetConnection = false;
 			}
@@ -1137,13 +1157,15 @@ public class Wochenansicht extends OptionActivity
 						}
 					});
 
-				} else
+				}
+				else
 				{
 					intent.setClass(context, Wochenansicht.class);
 					startActivityForResult(intent, 0);
 					finish();
 				}
-			} else
+			}
+			else
 			{
 				progressDialog.dismiss();
 				Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
@@ -1158,7 +1180,6 @@ public class Wochenansicht extends OptionActivity
 	 * Startet einen Ladedialog und schreibt die Termine in den Google-Kalender
 	 * 
 	 * @author DH10HAH
-	 * 
 	 */
 	private class TermineInKalender extends AsyncTask<String, Integer, Object>
 	{
@@ -1174,7 +1195,8 @@ public class Wochenansicht extends OptionActivity
 				googleKalender.ladeTermineInKalender(account, authToken);// schreibeTermineInKalender();
 
 				internetConnection = true;
-			} else
+			}
+			else
 			{
 				internetConnection = false;
 			}
@@ -1193,7 +1215,8 @@ public class Wochenansicht extends OptionActivity
 				startActivityForResult(intent, 0);
 				progressDialog.dismiss();
 				finish();
-			} else
+			}
+			else
 			{
 				progressDialog.dismiss();
 				Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();

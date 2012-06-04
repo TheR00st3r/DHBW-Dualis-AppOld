@@ -13,9 +13,7 @@ import dhbw.stundenplan.database.TerminDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 
 /**
- * 
  * @author DH10HAH
- * 
  */
 public class StundenplanAppActivity extends Activity
 {
@@ -74,7 +72,8 @@ public class StundenplanAppActivity extends Activity
 							try
 							{
 								wait(1000);
-							} catch (InterruptedException e)
+							}
+							catch (InterruptedException e)
 							{
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -83,20 +82,23 @@ public class StundenplanAppActivity extends Activity
 
 						startActivity(intent);
 						finish();
-					} else
+					}
+					else
 					{
 						Intent intent = new Intent();
 						intent.setClass(sPlashScreen, Login.class);
 						startActivity(intent);
 						finish();
 					}
-				} catch (SQLException se)
+				}
+				catch (SQLException se)
 				{
 					Intent intent = new Intent();
 					intent.setClass(sPlashScreen, Login.class);
 					startActivity(intent);
 					finish();
-				} catch (CursorIndexOutOfBoundsException ce)
+				}
+				catch (CursorIndexOutOfBoundsException ce)
 				{
 					Intent intent = new Intent();
 					intent.setClass(sPlashScreen, Login.class);
@@ -124,15 +126,14 @@ public class StundenplanAppActivity extends Activity
 				mSplashThread.notifyAll();
 			}
 		}
-		//TODO: Ursprünglich true, false zum Testen ob der Splashscreen damit übersprungen werden kann
+		// TODO: Ursprünglich true, false zum Testen ob der Splashscreen damit
+		// übersprungen werden kann
 		return false;
 	}
 
 	/**
 	 * Läd die Termine in eine HashMap zum Übergeben der Termine von einer in
-	 * die andere Activity
-	 * 
-	 * Schnellerer zugriff auf Termine
+	 * die andere Activity Schnellerer zugriff auf Termine
 	 * 
 	 * @return
 	 */
