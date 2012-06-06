@@ -45,7 +45,7 @@ public class Noten extends OptionActivity
 		progressDialog = new ProgressDialog(context);
 		// progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progressDialog.setMessage("Aktualisiere Termine");
+		progressDialog.setMessage("Aktualisiere Noten");
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 		new DownloadResults().execute("");
