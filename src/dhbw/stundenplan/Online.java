@@ -82,7 +82,7 @@ public class Online
 			String month = getCalenderMonth(args, wieVieleMonate);
 			if (month != null)
 			{
-				//Merge test
+				//test
 				Pattern p1 = Pattern.compile(DUALIS_KALENDER_REGEXP, Pattern.CASE_INSENSITIVE);
 				Matcher m1 = p1.matcher(month);
 				String datum = "";
