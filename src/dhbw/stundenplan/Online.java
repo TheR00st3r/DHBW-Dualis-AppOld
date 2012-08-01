@@ -82,7 +82,6 @@ public class Online
 			String month = getCalenderMonth(args, wieVieleMonate);
 			if (month != null)
 			{
-				//test
 				Pattern p1 = Pattern.compile(DUALIS_KALENDER_REGEXP, Pattern.CASE_INSENSITIVE);
 				Matcher m1 = p1.matcher(month);
 				String datum = "";
@@ -94,7 +93,7 @@ public class Online
 				boolean datumLetzte = false;
 				TerminDBAdapter terminDBAdapter = new TerminDBAdapter(context);
 				terminDBAdapter.loescheAlleTermine();
-
+//test 2
 				while (m1.find())
 				{
 
