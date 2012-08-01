@@ -114,12 +114,12 @@ public class Online
 					}
 					else
 					{
-						String str[] = m1.group(1).split(" / ");
-						String str2[] = str[0].split(" - ");
-						startzeit = str2[0];
-						endzeit = str2[1];
-						raum = str[1];
-						vorlesung = str[2];
+						String str[] = m1.group(1).split("/");
+						String str2[] = str[0].split("-");
+						startzeit = str2[0].trim();
+						endzeit = str2[1].trim();
+						raum = str[1].trim();
+						vorlesung = str[2].trim();
 						terminDBAdapter.createTermin(id, datum, startzeit, endzeit, vorlesung, raum);
 
 						id++;
