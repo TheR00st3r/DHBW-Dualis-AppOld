@@ -93,7 +93,7 @@ public class Online
 				boolean datumLetzte = false;
 				TerminDBAdapter terminDBAdapter = new TerminDBAdapter(context);
 				terminDBAdapter.loescheAlleTermine();
-//test 2
+				
 				while (m1.find())
 				{
 
