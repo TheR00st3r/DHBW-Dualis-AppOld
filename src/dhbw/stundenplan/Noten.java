@@ -117,12 +117,17 @@ public class Noten extends OptionActivity
 			if (internetConnection)
 			{
 				schreibeErgebnisse();
-				progressDialog.dismiss();
-
+				if(progressDialog.isShowing())
+				{
+					progressDialog.dismiss();
+				}
 			}
 			else
 			{
-				progressDialog.dismiss();
+				if(progressDialog.isShowing())
+				{
+					progressDialog.dismiss();
+				}
 				Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
 			}
 		}
