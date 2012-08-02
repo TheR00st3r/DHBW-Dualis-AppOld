@@ -232,7 +232,8 @@ public class Wochenansicht extends OptionActivity
 
 		while (i != dbGroesse && !abbrechen)
 		{
-			String datumStr = datumHash.get(String.valueOf(i));// c.getString(0);//0=Datum
+			String datumStr = "";
+			datumStr = datumHash.get(String.valueOf(i));// c.getString(0);//0=Datum
 																// 1=Startzeit
 																// 2=Endzeit
 																// 3=Vorlesung
