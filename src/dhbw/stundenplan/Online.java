@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
@@ -93,7 +94,7 @@ public class Online
 				boolean datumLetzte = false;
 				TerminDBAdapter terminDBAdapter = new TerminDBAdapter(context);
 				terminDBAdapter.loescheAlleTermine();
-				
+//test 2
 				while (m1.find())
 				{
 
