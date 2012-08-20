@@ -69,15 +69,14 @@ public class Noten extends OptionActivity
 			}
 			String data = "<table border=\"1\"><th>Nr.</th><th>Vorlesung</th><th>Note</th><th>ECTS</th><th>Status</th>" + stringBuilder + "</tbale>";
 
-			wv.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
+			wv.loadData("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body>" + data + "</body></html>", "text/html; charset=UTF-8", null);
 		}
 		else
 		{
-			wv.loadDataWithBaseURL(null, "Bitte erst die Datenbank Aktualisieren", "text/html", "utf-8", null);
+			wv.loadData("Bitte erst die Datenbank Aktualisieren", "text/html", "UTF-8");
 		}
 		c.close();
 		resultsDBAdapter.close();
-
 	}
 
 	/**
