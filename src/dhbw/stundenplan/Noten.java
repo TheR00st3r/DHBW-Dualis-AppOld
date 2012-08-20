@@ -4,11 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.GridView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import dhbw.stundenplan.database.ResultsDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
@@ -20,19 +25,30 @@ import dhbw.stundenplan.database.UserDBAdapter;
  */
 public class Noten extends OptionActivity
 {
-	final int layout = R.layout.noten;
 	public ProgressDialog progressDialog;
-	Context context;
-	WebView wv;
+	private Context _Context;
+	private WebView _WebView;
+	private TableLayout _TableLayout;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(layout);
-		// tv = (TextView)findViewById(R.id.textView2);
-		wv = (WebView) findViewById(R.id.webView1);
-		context = this;
-		schreibeErgebnisse();
+		
+		if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.GINGERBREAD_MR1)
+		{
+			setContentView( R.layout.noten);
+			// tv = (TextView)findViewById(R.id.textView2);
+			_WebView = (WebView) findViewById(R.id.webView1);
+			_Context = this;
+			schreibeErgebnisseAlt();
+		}
+		else
+		{
+			setContentView(R.layout.notenneu);
+			_TableLayout = (TableLayout)findViewById(R.id.notenTabelle);
+			_Context = this;
+			schreibeErgebnisseNeu();
+		}
 	}
 
 	/**
@@ -42,7 +58,7 @@ public class Noten extends OptionActivity
 	 */
 	public void aktualisieren(View view)
 	{
-		progressDialog = new ProgressDialog(context);
+		progressDialog = new ProgressDialog(_Context);
 		// progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progressDialog.setMessage("Aktualisiere Noten");
@@ -53,10 +69,11 @@ public class Noten extends OptionActivity
 
 	/**
 	 * Vorläufig um die Ergebnisse anzuzeigen
+	 * Wird bis Gingerbread benutzt.
 	 */
-	public void schreibeErgebnisse()
+	public void schreibeErgebnisseAlt()
 	{
-		ResultsDBAdapter resultsDBAdapter = new ResultsDBAdapter(context);
+		ResultsDBAdapter resultsDBAdapter = new ResultsDBAdapter(_Context);
 		Cursor c = resultsDBAdapter.fetchAll();
 		if (c.moveToFirst())
 		{
@@ -69,16 +86,48 @@ public class Noten extends OptionActivity
 			}
 			String data = "<table border=\"1\"><th>Nr.</th><th>Vorlesung</th><th>Note</th><th>ECTS</th><th>Status</th>" + stringBuilder + "</tbale>";
 
-			wv.loadData("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body>" + data + "</body></html>", "text/html; charset=UTF-8", null);
+			_WebView.loadData("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body>" + data + "</body></html>", "text/html; charset=UTF-8", null);
 		}
 		else
 		{
-			wv.loadData("Bitte erst die Datenbank Aktualisieren", "text/html", "UTF-8");
+			_WebView.loadData("Bitte erst die Datenbank Aktualisieren", "text/html", "UTF-8");
 		}
 		c.close();
 		resultsDBAdapter.close();
 	}
 
+	/**
+	 * Neuere Anzeige für Ergebnisse
+	 * wird ab Honeycomb benutzt.
+	 */
+	public void schreibeErgebnisseNeu()
+	{
+		ResultsDBAdapter resultsDBAdapter = new ResultsDBAdapter(_Context);
+		Cursor c = resultsDBAdapter.fetchAll();
+		if (c.moveToFirst())
+		{
+			while (!c.isLast())
+			{
+				TableRow tableRow = new TableRow(_Context);
+				TextView tv[] = new TextView[7];
+				for(int i=0; i<5; i++)
+				{
+					tv[i] = new TextView(_Context);
+					tv[i].setText(c.getString(i));
+					tableRow.addView(tv[i]);
+				}
+				_TableLayout.addView(tableRow);
+				c.moveToNext();
+			}
+		}
+		else
+		{
+			
+		}
+		c.close();
+		resultsDBAdapter.close();
+	}
+	
 	/**
 	 * Startet einen Ladedialog, und läd die Ergebnisse herunter
 	 */
@@ -93,14 +142,14 @@ public class Noten extends OptionActivity
 			Looper.prepare();
 			if (checkInternetConnection())
 			{
-				UserDBAdapter userDBAdapter = new UserDBAdapter(context);
+				UserDBAdapter userDBAdapter = new UserDBAdapter(_Context);
 				final String password = userDBAdapter.getPassword();
 				final String username = userDBAdapter.getUsername();
 				userDBAdapter.close();
 
 				Online online = new Online();
 				// publishProgress(50);
-				online.ladeResultsInDB(username, password, context);
+				online.ladeResultsInDB(username, password, _Context);
 				// publishProgress(100);
 				internetConnection = true;
 			}
@@ -115,7 +164,7 @@ public class Noten extends OptionActivity
 		{
 			if (internetConnection)
 			{
-				schreibeErgebnisse();
+				schreibeErgebnisseAlt();
 				if(progressDialog.isShowing())
 				{
 					progressDialog.dismiss();
