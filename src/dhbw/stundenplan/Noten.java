@@ -3,6 +3,7 @@ package dhbw.stundenplan;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,11 +11,10 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.GridView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
+import dhbw.stundenplan.R.drawable;
 import dhbw.stundenplan.database.ResultsDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 
@@ -29,6 +29,7 @@ public class Noten extends OptionActivity
 	private Context _Context;
 	private WebView _WebView;
 	private TableLayout _TableLayout;
+	private Boolean _Neu;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -40,6 +41,7 @@ public class Noten extends OptionActivity
 			// tv = (TextView)findViewById(R.id.textView2);
 			_WebView = (WebView) findViewById(R.id.webView1);
 			_Context = this;
+			_Neu = false;
 			schreibeErgebnisseAlt();
 		}
 		else
@@ -47,6 +49,7 @@ public class Noten extends OptionActivity
 			setContentView(R.layout.notenneu);
 			_TableLayout = (TableLayout)findViewById(R.id.notenTabelle);
 			_Context = this;
+			_Neu = true;
 			schreibeErgebnisseNeu();
 		}
 	}
@@ -103,18 +106,45 @@ public class Noten extends OptionActivity
 	public void schreibeErgebnisseNeu()
 	{
 		ResultsDBAdapter resultsDBAdapter = new ResultsDBAdapter(_Context);
+		
+		TableRow tableHead = new TableRow(_Context);
+		for(String tableHeadStr : getResources().getStringArray(R.array.notenTableHead))
+		{
+			TableCell tableCellHead = new TableCell(_Context);
+			tableCellHead.setPadding(8, 8, 8, 8);
+			tableCellHead.setTextAppearance(_Context, android.R.style.TextAppearance_Medium);
+			tableCellHead.setTextColor(Color.BLACK);
+			tableCellHead.setText(tableHeadStr);
+			
+			
+			tableHead.addView(tableCellHead);
+		}
+		_TableLayout.addView(tableHead);
+		
 		Cursor c = resultsDBAdapter.fetchAll();
 		if (c.moveToFirst())
 		{
+			
 			while (!c.isLast())
 			{
 				TableRow tableRow = new TableRow(_Context);
-				TextView tv[] = new TextView[7];
-				for(int i=0; i<5; i++)
+				TableCell tv[] = new TableCell[7];
+				for(int i=1; i<=4; i++)
 				{
-					tv[i] = new TextView(_Context);
-					tv[i].setText(c.getString(i));
-					tableRow.addView(tv[i]);
+					if(i!=2)
+					{
+						tv[i] = new TableCell(_Context);
+						
+						tv[i].setPadding(5, 5, 5, 5);
+						tv[i].setTextColor(Color.BLACK);
+						String data = c.getString(i);
+						if(data.toLowerCase().contains("nbs"))
+						{
+							data="";
+						}
+						tv[i].setText(data);
+						tableRow.addView(tv[i]);
+					}
 				}
 				_TableLayout.addView(tableRow);
 				c.moveToNext();
@@ -164,7 +194,15 @@ public class Noten extends OptionActivity
 		{
 			if (internetConnection)
 			{
-				schreibeErgebnisseAlt();
+				if(_Neu)
+				{
+					schreibeErgebnisseNeu();
+				}
+				else
+				{
+					schreibeErgebnisseAlt();
+				}
+				
 				if(progressDialog.isShowing())
 				{
 					progressDialog.dismiss();

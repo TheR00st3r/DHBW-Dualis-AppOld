@@ -30,6 +30,11 @@
     <string name="noten">Noten</string>
     <string name="loeschen">Notiz löschen</string>
     <string name="googleCalendarSync">Google Kalender Sync</string>
+    <string-array name="notenTableHead">
+        <item >Vorlesung</item>
+        <item >Credits</item>
+        <item >Note</item>
+    </string-array>
     
     
     
