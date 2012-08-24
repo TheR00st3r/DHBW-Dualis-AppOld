@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import dhbw.stundenplan.R;
+import dhbw.stundenplan.R.id;
+import dhbw.stundenplan.R.layout;
 import dhbw.stundenplan.database.TerminNotizDBAdapter;
 
 /**

@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,9 +14,16 @@ import android.webkit.WebView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
+import dhbw.stundenplan.Online;
+import dhbw.stundenplan.R;
+import dhbw.stundenplan.R.array;
 import dhbw.stundenplan.R.drawable;
+import dhbw.stundenplan.R.id;
+import dhbw.stundenplan.R.layout;
 import dhbw.stundenplan.database.ResultsDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
+import dhbw.stundenplan.ui.element.OptionActivity;
+import dhbw.stundenplan.ui.element.TableCell;
 
 /**
  * Zeigt provisorisch die Prüfungsergebnisse an

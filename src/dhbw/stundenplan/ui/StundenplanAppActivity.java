@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui;
 
 import java.util.HashMap;
 
@@ -9,6 +9,8 @@ import android.database.CursorIndexOutOfBoundsException;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import dhbw.stundenplan.R;
+import dhbw.stundenplan.R.layout;
 import dhbw.stundenplan.database.TerminDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 

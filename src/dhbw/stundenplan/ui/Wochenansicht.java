@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,12 +38,21 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+import dhbw.stundenplan.Online;
+import dhbw.stundenplan.R;
+import dhbw.stundenplan.Settings;
+import dhbw.stundenplan.R.color;
+import dhbw.stundenplan.R.drawable;
+import dhbw.stundenplan.R.id;
+import dhbw.stundenplan.R.layout;
+import dhbw.stundenplan.R.string;
 import dhbw.stundenplan.database.TerminDBAdapter;
 import dhbw.stundenplan.database.TerminFarbeDBAdapter;
 import dhbw.stundenplan.database.TerminNotizDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 import dhbw.stundenplan.google.GoogleKalender;
 import dhbw.stundenplan.google.OAuthManager;
+import dhbw.stundenplan.ui.element.OptionActivity;
 
 /**
  * Zeigt die Termine wochenweise an

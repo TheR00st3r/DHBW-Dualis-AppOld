@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui;
 
 import android.accounts.Account;
 import android.app.Activity;
@@ -21,10 +21,18 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import dhbw.stundenplan.Online;
+import dhbw.stundenplan.R;
+import dhbw.stundenplan.Settings;
+import dhbw.stundenplan.R.array;
+import dhbw.stundenplan.R.id;
+import dhbw.stundenplan.R.layout;
+import dhbw.stundenplan.R.menu;
 import dhbw.stundenplan.database.TerminDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 import dhbw.stundenplan.google.GoogleKalender;
 import dhbw.stundenplan.google.OAuthManager;
+import dhbw.stundenplan.ui.element.OptionActivity;
 
 /**
  * TestTest

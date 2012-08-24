@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui.element;
 
 import android.content.Context;
 import android.graphics.Canvas;

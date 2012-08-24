@@ -28,3 +28,9 @@ TODO:
 - Autosync
 - Benachrichtung bei Neuigkeiten/Änderungen/...
 - Bessere/Notwendigere Einstellungen
+- Speisepläne:	- Horb: http://www.dhbw-stuttgart.de/horb/themen/service-einrichtungen/cafeteria/speiseplan.html
+				- Mannheim: http://www.studentenwerk-mannheim.de/mensa/tg_mm.std.php (Anfrage von Mannheim)
+				- ...
+- Gebäudepläne: siehe DHBW Karlsruhe App (Anfrage von Mannheim)
+- Bibliothek:	- Horb: http://www.dhbw-stuttgart.de/horb/themen/service-einrichtungen/bibliothek/literatursuche.html
+				- Mannheim: http://www.bib.dhbw-mannheim.de/

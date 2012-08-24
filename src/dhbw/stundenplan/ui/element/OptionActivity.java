@@ -1,4 +1,4 @@
-package dhbw.stundenplan;
+package dhbw.stundenplan.ui.element;
 
 import java.util.HashMap;
 
@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.view.Menu;
 import android.view.MenuInflater;
+import dhbw.stundenplan.R;
+import dhbw.stundenplan.R.menu;
 import dhbw.stundenplan.database.TerminDBAdapter;
 
 /**

@@ -19,7 +19,7 @@
  * http://GORGES.us
  */
  
-package dhbw.stundenplan.us.gorges;
+package dhbw.stundenplan.ui.element;
  
 import java.util.List;
  
