@@ -1119,7 +1119,7 @@ public class Wochenansicht extends OptionActivity
 				final String username = userDBAdapter.getUsername();
 
 				Online online = new Online();
-				online.ladeTermineInDB(username, password, Integer.parseInt(anzahlMonate), context);
+				online.saveAppointmentToDB(username, password, Integer.parseInt(anzahlMonate), context);
 				ladeTermineInHash();
 				internetConnection = true;
 			}
@@ -1189,8 +1189,8 @@ public class Wochenansicht extends OptionActivity
 		{
 			if (checkInternetConnection())
 			{
-				googleKalender = new GoogleKalender(activity, context);
-				googleKalender.ladeTermineInKalender(account, authToken);// schreibeTermineInKalender();
+				googleKalender = new GoogleKalender(context);
+				googleKalender.writeAppointmentsToGoogleCalendar(account, authToken);// schreibeTermineInKalender();
 
 				internetConnection = true;
 			}

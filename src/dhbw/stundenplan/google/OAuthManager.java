@@ -212,7 +212,7 @@ public class OAuthManager
 					}
 					else if (result.containsKey(AccountManager.KEY_AUTHTOKEN))
 					{
-						Log.e(Constants.TAG, "Got auth token: " + invalidate);
+						Log.e(getClass().getSimpleName(), "Got auth token: " + invalidate);
 						authToken = result.getString(AccountManager.KEY_AUTHTOKEN);
 						if (invalidate)
 						{
@@ -230,17 +230,17 @@ public class OAuthManager
 				}
 				catch (OperationCanceledException e)
 				{
-					Log.e(Constants.TAG, "Operation Canceled", e);
+					Log.e(getClass().getSimpleName(), "Operation Canceled", e);
 					callback.handleAuth(null, null);
 				}
 				catch (IOException e)
 				{
-					Log.e(Constants.TAG, "IOException", e);
+					Log.e(getClass().getSimpleName(), "IOException", e);
 					callback.handleAuth(null, null);
 				}
 				catch (AuthenticatorException e)
 				{
-					Log.e(Constants.TAG, "Authentication Failed", e);
+					Log.e(getClass().getSimpleName(), "Authentication Failed", e);
 					callback.handleAuth(null, null);
 				}
 			}
@@ -287,7 +287,7 @@ public class OAuthManager
 		else
 		{
 			// Let the user choose.
-			Log.e(Constants.TAG, "Multiple matching accounts found.");
+			Log.e(getClass().getSimpleName(), "Multiple matching accounts found.");
 
 			// Build dialog.
 			String[] choices = new String[accounts.length];

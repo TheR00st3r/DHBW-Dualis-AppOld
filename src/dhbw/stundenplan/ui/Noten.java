@@ -186,7 +186,7 @@ public class Noten extends OptionActivity
 
 				Online online = new Online();
 				// publishProgress(50);
-				online.ladeResultsInDB(username, password, _Context);
+				online.saveResultsToDB(username, password, _Context);
 				// publishProgress(100);
 				internetConnection = true;
 			}

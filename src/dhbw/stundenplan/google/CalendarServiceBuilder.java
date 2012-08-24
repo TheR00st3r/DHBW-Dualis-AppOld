@@ -33,15 +33,12 @@ public class CalendarServiceBuilder
 
 		Calendar service = Calendar.builder(transport, jsonFactory).setApplicationName("DHBW Dualis").setJsonHttpRequestInitializer(new JsonHttpRequestInitializer()
 		{
-
 			public void initialize(JsonHttpRequest request)
 			{
-
 				CalendarRequest calendarRequest = (CalendarRequest) request;
-				// TODO: Get an API key from Google's APIs Console:
+				// To Get an API key from Google's APIs Console:
 				// https://code.google.com/apis/console.
 				calendarRequest.setKey("AIzaSyCmqiLdWTNnGjWWWnLqJpGWYbEqoBtk_fM");
-
 			}
 		}).setHttpRequestInitializer(accessProtectedResource).build();
 		return service;

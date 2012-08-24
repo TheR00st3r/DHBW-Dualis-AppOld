@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import dhbw.stundenplan.R;
-import dhbw.stundenplan.R.menu;
 import dhbw.stundenplan.database.TerminDBAdapter;
 
 /**
@@ -21,14 +20,13 @@ import dhbw.stundenplan.database.TerminDBAdapter;
 public abstract class OptionActivity extends Activity
 {
 	protected Intent intent = new Intent();
-	Context Context;
+	protected Context _Context;
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu, menu);
-
 		return true;
 	}
 
@@ -47,7 +45,6 @@ public abstract class OptionActivity extends Activity
 		}
 		else
 		{
-			System.out.println("Internet Connection Not Present");
 			return false;
 		}
 	}
@@ -70,8 +67,8 @@ public abstract class OptionActivity extends Activity
 		HashMap<String, String> wochentag = new HashMap<String, String>();
 
 		int dbGroesse = terminDBAdapter.gibDBGroesse();
-		int i = 1;
-		while (i != dbGroesse)
+		
+		for(int i = 1;i != dbGroesse;i++)
 		{
 			Cursor c = terminDBAdapter.fetchTermineComplete(i);
 			if (c.moveToFirst())
@@ -83,7 +80,6 @@ public abstract class OptionActivity extends Activity
 				raum.put(c.getString(0), c.getString(5));
 				wochentag.put(c.getString(0), c.getString(6));
 			}
-			i++;
 		}
 
 		terminDBAdapter.close();
@@ -96,6 +92,5 @@ public abstract class OptionActivity extends Activity
 		intent.putExtra("wochentag", wochentag);
 
 		return true;
-
 	}
 }

@@ -34,8 +34,7 @@ public class TableCell extends TextView
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setColor(Color.BLACK);
 		paint.setStrokeWidth(3);
-		this.getDrawingRect(rect);
-//		getLocalVisibleRect(rect);
+		getDrawingRect(rect);
 		canvas.drawRect(rect, paint);
 	}
 }

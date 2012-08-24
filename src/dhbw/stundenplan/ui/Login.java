@@ -207,7 +207,7 @@ public class Login extends OptionActivity
 				userDBAdapter.close();
 
 				Online online = new Online();
-				if (online.ladeTermineInDB(username, password, Integer.parseInt(anzahlMonate), context))
+				if (online.saveAppointmentToDB(username, password, Integer.parseInt(anzahlMonate), context))
 				{
 					ladeTermineInHash();
 					loginKorrekt = true;
@@ -347,8 +347,8 @@ public class Login extends OptionActivity
 			Looper.prepare();
 			if (checkInternetConnection())
 			{
-				googleKalender = new GoogleKalender(activity, context);
-				googleKalender.ladeTermineInKalender(account, authToken);// schreibeTermineInKalender();
+				googleKalender = new GoogleKalender(context);
+				googleKalender.writeAppointmentsToGoogleCalendar(account, authToken);// schreibeTermineInKalender();
 
 				internetConnection = true;
 			}

@@ -19,7 +19,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 import dhbw.stundenplan.database.ResultsDBAdapter;
@@ -45,92 +44,86 @@ public class Online
 	public static final String CHARSET = "UTF-8";
 	public static final String DUALIS_KALENDER_REGEXP = "<a title=\"([^\"]+)\"";
 	public static final String DUALIS_RESULT_REGEXP = "<tr> <td class=\"tbdata\">([^\"]*)</td> <td class=\"tbdata\">([^\"]*)</td> <td class=\"tbdata\" style=\"text-align:right;\">([^\"]*)</td> <td class=\"tbdata\" style=\"text-align:right;\">([^\"]*)</td> <td class=\"tbdata\" style=\"text-align:right;\">([^\"]*)</td> <td class=\"tbdata\" style=\"text-align:center;\">([^\"]*)</td> <td class=\"tbdata\" style=\"text-align:center;\"><img src=\"/img/individual/([^\"]*).gif\" alt=\"([^\"]*)\" title=\"([^\"]*)\" /></td> </tr>";
-	private static final int ANZAHLLOGINVERSUCHE = 5;
-	private String args;
+	private static final int MAX_LOGIN = 5;
 
-	Context context;
-	Activity activity;
+	private String _Args;
 
 	/**
 	 * Läd Termine aus Dualis in die Datenbank
 	 * 
 	 * @param username
 	 *            Benutzername
-	 * @param passwort
+	 * @param password
 	 *            Passwort
-	 * @param wieVieleMonate
+	 * @param months
 	 *            Gibt an wieviele Monate heruntergeladen werden sollen
 	 * @param context
 	 *            Context der Activity auf der Fehler ausgegeben werden sollen
 	 * @return
 	 */
-	public boolean ladeTermineInDB(String username, String passwort, int wieVieleMonate, Context context)
+	public boolean saveAppointmentToDB(String username, String password, int months, Context context)
 	{
-		int i = 0;
-		do
+		int tryNumber = 0;
+		while (_Args == null && tryNumber < MAX_LOGIN)
+			;
 		{
-			args = login(username, passwort);
-			i++;
-		} while (args == null && i < ANZAHLLOGINVERSUCHE);
-		if (args == null)
+			_Args = login(username, password);
+			tryNumber++;
+		}
+		if (_Args == null)
 		{
 			Toast.makeText(context, "Login fehlgeschlagen, überprüfen sie ihre Logindaten", Toast.LENGTH_SHORT).show();
 			return false;
-		}
-		else
+		} else
 		{
-			String month = getCalenderMonth(args, wieVieleMonate);
+			String month = getMonth(_Args, months);
 			if (month != null)
 			{
-				Pattern p1 = Pattern.compile(DUALIS_KALENDER_REGEXP, Pattern.CASE_INSENSITIVE);
-				Matcher m1 = p1.matcher(month);
-				String datum = "";
-				String startzeit = "";
-				String endzeit = "";
-				String raum = "";
-				String vorlesung = "";
+				Pattern pattern = Pattern.compile(DUALIS_KALENDER_REGEXP, Pattern.CASE_INSENSITIVE);
+				Matcher matcher = pattern.matcher(month);
+				String date = "";
+				String starttime = "";
+				String endtime = "";
+				String room = "";
+				String course = "";
 				int id = 1;
-				boolean datumLetzte = false;
+				boolean lastWasDate = false;
 				TerminDBAdapter terminDBAdapter = new TerminDBAdapter(context);
 				terminDBAdapter.loescheAlleTermine();
-//test 2
-				while (m1.find())
-				{
 
-					int groupLaenge = m1.group(1).length();
-					if (groupLaenge == 10)
+				while (matcher.find())
+				{
+					int dataStringLength = matcher.group(1).length();
+					if (dataStringLength == 10)
 					{
-						if (datumLetzte)
+						if (lastWasDate)
 						{
-							startzeit = "";
-							endzeit = "";
-							vorlesung = "";
-							raum = "";
-							terminDBAdapter.createTermin(id, datum, startzeit, endzeit, vorlesung, raum);
+							starttime = "";
+							endtime = "";
+							course = "";
+							room = "";
+							terminDBAdapter.createTermin(id, date, starttime, endtime, course, room);
 							id++;
 						}
-						datum = m1.group(1);
-						datumLetzte = true;
-					}
-					else
+						date = matcher.group(1);
+						lastWasDate = true;
+					} else
 					{
-						String str[] = m1.group(1).split("/");
-						String str2[] = str[0].split("-");
-						startzeit = str2[0].trim();
-						endzeit = str2[1].trim();
-						raum = str[1].trim();
-						vorlesung = str[2].trim();
-						terminDBAdapter.createTermin(id, datum, startzeit, endzeit, vorlesung, raum);
+						String strData[] = matcher.group(1).split("/");
+						String strTime[] = strData[0].split("-");
+						room = strData[1].trim();
+						course = strData[2].trim();
+						starttime = strTime[0].trim();
+						endtime = strTime[1].trim();
+						terminDBAdapter.createTermin(id, date, starttime, endtime, course, room);
 
 						id++;
-
-						datumLetzte = false;
+						lastWasDate = false;
 					}
 				}
 			}
 		}
 		return true;
-
 	}
 
 	/**
@@ -138,32 +131,32 @@ public class Online
 	 * 
 	 * @param username
 	 *            Benutzername
-	 * @param passwort
+	 * @param password
 	 *            Password
 	 * @param context
 	 *            Context der Activity auf der Fehler ausgegeben werden sollen
 	 */
-	public void ladeResultsInDB(String username, String passwort, Context context)
+	public void saveResultsToDB(String username, String password, Context context)
 	{
-		int i = 0;
-		do
+		int tryNumber = 0;
+		while (_Args == null && tryNumber < MAX_LOGIN)
+			;
 		{
-			args = login(username, passwort);
-			i++;
-		} while (args == null && i < ANZAHLLOGINVERSUCHE);
-		if (args == null)
+			_Args = login(username, password);
+			tryNumber++;
+		}
+		if (_Args == null)
 		{
 			Toast.makeText(context, "Login fehlgeschlagen, überprüfen sie ihre Logindaten", Toast.LENGTH_SHORT).show();
 			return;
-		}
-		else
+		} else
 		{
-			String results = getResults(args);
+			String results = getResults(_Args);
 
 			results = results.replaceAll("\\s\\s+", " ");
 
-			Pattern p1 = Pattern.compile(DUALIS_RESULT_REGEXP, Pattern.CASE_INSENSITIVE);
-			Matcher m1 = p1.matcher(results);
+			Pattern pattern = Pattern.compile(DUALIS_RESULT_REGEXP, Pattern.CASE_INSENSITIVE);
+			Matcher matcher = pattern.matcher(results);
 			/*
 			 * Options: 1: Prüfungsnummer 2: Vorlesungsname 3: Datum 4. Credits
 			 * 5. Note 6. ECTSnote 7. Status Englisch 8. oder 9. Status Deutsch
@@ -171,40 +164,40 @@ public class Online
 
 			ResultsDBAdapter resultsDBAdapter = new ResultsDBAdapter(context);
 			resultsDBAdapter.loescheDB();
-			while (m1.find())
+			while (matcher.find())
 			{
-				String pruefungsnummer;
-				String vorlesungsname;
-				String datum;
+				String number;
+				String course;
+				String date;
 				String credits;
 				String ectsnote;
-				String note;
-				String status;
+				String mark;
+				String state;
 
-				pruefungsnummer = m1.group(1);
-				vorlesungsname = m1.group(2);
-				datum = m1.group(3);
-				credits = m1.group(4).substring(1, 4);
-				note = m1.group(5);
-				ectsnote = m1.group(6).substring(6);
-				status = m1.group(8);
+				number = matcher.group(1);
+				course = matcher.group(2);
+				date = matcher.group(3);
+				credits = matcher.group(4).substring(1, 4);
+				mark = matcher.group(5);
+				ectsnote = matcher.group(6).substring(6);
+				state = matcher.group(8);
 
-				if (pruefungsnummer == null)
-					pruefungsnummer = " ";
-				if (vorlesungsname == null)
-					vorlesungsname = " ";
-				if (datum == null)
-					datum = " ";
+				if (number == null)
+					number = " ";
+				if (course == null)
+					course = " ";
+				if (date == null)
+					date = " ";
 				if (ectsnote == null)
 					ectsnote = " ";
 				if (credits == null)
 					credits = " ";
-				if (note == null)
-					note = " ";
-				if (status == null)
-					status = " ";
+				if (mark == null)
+					mark = " ";
+				if (state == null)
+					state = " ";
 
-				resultsDBAdapter.createResult(pruefungsnummer, vorlesungsname, datum, credits, note, ectsnote, status);
+				resultsDBAdapter.createResult(number, course, date, credits, mark, ectsnote, state);
 			}
 			resultsDBAdapter.close();
 		}
@@ -217,27 +210,26 @@ public class Online
 	 */
 	public String getArgs()
 	{
-		if (args == null)
-
+		if (_Args == null)
 		{
-			args = "";
+			_Args = "";
 		}
-		return args;
+		return _Args;
 	}
 
 	/**
 	 * Gibt den Header der URLConnection zurück
 	 * 
-	 * @param con
+	 * @param connection
 	 *            URLConnection
 	 * @return header
 	 */
-	private String getHeader(URLConnection con)
+	private String getHeader(URLConnection connection)
 	{
 		String ret = "";
-		for (String field : con.getHeaderFields().keySet())
+		for (String field : connection.getHeaderFields().keySet())
 		{
-			ret += field + " : " + con.getHeaderFields().get(field);
+			ret += field + " : " + connection.getHeaderFields().get(field);
 		}
 		return ret;
 	}
@@ -251,32 +243,7 @@ public class Online
 	 */
 	private String getResults(String args)
 	{
-		String ret = null;
-		StringBuilder stringBuilder = new StringBuilder();
-
-		try
-		{
-			URLConnection conn = connect(DUALIS_APP_URL + DUALIS_RESULTS + args + DUALIS_RESULTS_SUFFIX);
-
-			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String line;
-
-			while ((line = rd.readLine()) != null)
-			{
-				stringBuilder.append(line);
-				// ret+=line;
-			}
-
-			rd.close();
-		}
-		catch (Exception e)
-		{
-			ret = null;
-			// TODO: richtige exception
-		}
-		ret = stringBuilder.toString();
-
-		return ret;
+		return getHTMLPage(DUALIS_APP_URL + DUALIS_RESULTS + args + DUALIS_RESULTS_SUFFIX);
 	}
 
 	/**
@@ -284,34 +251,48 @@ public class Online
 	 * 
 	 * @param args
 	 *            Argumente
-	 * @param wieVieleMonate
+	 * @param months
 	 *            Gibt an wieviele Monate heruntergeladen werden sollen
 	 * @return Liefert die Vorlesungen in einem String
 	 */
-	private String getCalenderMonth(String args, int wieVieleMonate)
+	private String getMonth(String args, int months)
 	{
 		String ret = null;
 		StringBuilder stringBuilder = new StringBuilder();
-		for (int i = 0; i <= wieVieleMonate; i++)
+		for (int i = 0; i <= months; i++)
 		{
-			try
-			{
-				String datum = getDate(i - 1);
-				URLConnection conn = connect(DUALIS_APP_URL + DUALIS_KALENDAR + args + ",-N000019" + datum + DUALIS_KALENDER_MONATSANSICHT_ARGUMENTS_SUFFIX);
-				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				String line;
+			String datum = getDate(i - 1);
+			getHTMLPage(DUALIS_APP_URL + DUALIS_KALENDAR + args + ",-N000019" + datum + DUALIS_KALENDER_MONATSANSICHT_ARGUMENTS_SUFFIX);
+		}
+		ret = stringBuilder.toString();
+		return ret;
+	}
 
-				while ((line = rd.readLine()) != null)
-				{
-					stringBuilder.append(line);
-				}
-				rd.close();
+	/**
+	 * Läd den HTML code der Seite unter dem angegebenen Link herunter
+	 * 
+	 * @param url
+	 *            Link der zu ladenden Seite
+	 * @return HTML Quelltext der Seite
+	 */
+	private String getHTMLPage(String url)
+	{
+		String ret = "";
+		StringBuilder stringBuilder = new StringBuilder();
+		try
+		{
+			URLConnection connection = connect(url);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String line;
 
-			}
-			catch (Exception e)
+			while ((line = bufferedReader.readLine()) != null)
 			{
-				ret = null;
+				stringBuilder.append(line);
 			}
+			bufferedReader.close();
+		} catch (Exception e)
+		{
+			ret = null;
 		}
 		ret = stringBuilder.toString();
 		return ret;
@@ -327,61 +308,53 @@ public class Online
 	 * 
 	 * @param username
 	 *            Benutzername
-	 * @param passwort
+	 * @param password
 	 *            Passwort
 	 * @return die Argumente die nun immer im Get HEADER übergeben werden
 	 *         müssen, um eingelogt zu bleiben. null, falls login fehlgeschlagen
 	 *         hat (kann verschiedene Gründe haben).
 	 */
-	public String login(String username, String passwort)
+	public String login(String username, String password)
 	{
-
 		String cookie = null;
 
 		if (username.contains("loerrach"))
 		{
 			Map<String, String> data = new HashMap<String, String>();
 			data.put("username", username.replace("@dhbw-loerrach.de", ""));
-			data.put("password", passwort);
+			data.put("password", password);
 			try
 			{
 				cookie = doSubmit("https://portal.dhbw-loerrach.de/cas/login?service=https%3A%2F%2Fportal.dhbw-loerrach.de%2Fc%2Fportal%2Flogin", data);
-			}
-			catch (Exception e)
+			} catch (Exception e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		else
+		} else
 		{
-			String data = "usrname=" + username + "&pass=" + passwort + "&APPNAME=CampusNet&PRGNAME=LOGINCHECK&ARGUMENTS=clino%2Cusrname%2Cpass%2Cmenuno%2Cpersno%2Cbrowser%2Cplatform&clino=000000000000001&menuno=000000&persno=00000000&browser=&platform=";
+			String data = "usrname=" + username + "&pass=" + password + "&APPNAME=CampusNet&PRGNAME=LOGINCHECK&ARGUMENTS=clino%2Cusrname%2Cpass%2Cmenuno%2Cpersno%2Cbrowser%2Cplatform&clino=000000000000001&menuno=000000&persno=00000000&browser=&platform=";
 
-			URLConnection conn;
+			URLConnection connection;
 			try
 			{
-				conn = connect(DUALIS_LOGIN_URL);
-				conn.setDoOutput(true);
-				OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-				wr.write(data);
-				wr.close();
-				String header = getHeader(conn);
+				connection = connect(DUALIS_LOGIN_URL);
+				connection.setDoOutput(true);
+				OutputStreamWriter outputStreamWriter = new OutputStreamWriter(connection.getOutputStream());
+				outputStreamWriter.write(data);
+				outputStreamWriter.close();
+				String header = getHeader(connection);
 
-				Pattern p = Pattern.compile(DUALIS_ARGUMENTE_REGEXP, Pattern.CASE_INSENSITIVE);
-				Matcher m = p.matcher(header);
-				if (m.find())
+				Pattern pattern = Pattern.compile(DUALIS_ARGUMENTE_REGEXP, Pattern.CASE_INSENSITIVE);
+				Matcher matcher = pattern.matcher(header);
+				if (matcher.find())
 				{
-					cookie = m.group(1);
+					cookie = matcher.group(1);
 				}
-			}
-			catch (MalformedURLException e)
+			} catch (MalformedURLException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			catch (IOException e)
+			} catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -397,11 +370,11 @@ public class Online
 	private URLConnection connect(String surl) throws MalformedURLException, IOException
 	{
 		URL url = new URL(surl);
-		URLConnection conn = url.openConnection();
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + CHARSET);
-		conn.setRequestProperty("User-Agent", "DHBW Dualis App by Andy H. and Michi V.");
-		conn.setRequestProperty("Cookie", DUALIS_COOKIE);
-		return conn;
+		URLConnection connection = url.openConnection();
+		connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=" + CHARSET);
+		connection.setRequestProperty("User-Agent", "DHBW Dualis App by Andy H. and Michi V.");
+		connection.setRequestProperty("Cookie", DUALIS_COOKIE);
+		return connection;
 	}
 
 	/**
@@ -425,35 +398,37 @@ public class Online
 	 * Liefert das Datum datum für den entsprechenden Monat um die richtige
 	 * Ansicht im Dualis zu bekommen
 	 * 
-	 * @param wieVielMonate
+	 * @param months
 	 * @return Gibt das Datum in wieVielMonate zurück
 	 */
-	private String getDate(int wieVielMonate)
+	private String getDate(int months)
 	{
 		SimpleDateFormat month = new SimpleDateFormat("MM");
 		SimpleDateFormat year = new SimpleDateFormat("yyyy");
-		Calendar cal = Calendar.getInstance();
-		String curMonth = month.format(cal.getTime());
-		String curYear = year.format(cal.getTime());
-		int curMonthInt = Integer.parseInt(curMonth);
-		curMonthInt = curMonthInt + wieVielMonate;
-		if (curMonthInt >= 13)
+		Calendar calendar = Calendar.getInstance();
+		String currentMonth = month.format(calendar.getTime());
+		String curYearStr = year.format(calendar.getTime());
+		int currentMonthInt = Integer.parseInt(currentMonth);
+		currentMonthInt = currentMonthInt + months;
+		if (currentMonthInt > 12)
 		{
-			curMonthInt = curMonthInt - 12;
-			int curYearInt = Integer.parseInt(curYear);
+			currentMonthInt = currentMonthInt - 12;
+			int curYearInt = Integer.parseInt(curYearStr);
 			curYearInt = curYearInt + 1;
-			curYear = String.valueOf(curYearInt);
+			curYearStr = String.valueOf(curYearInt);
 		}
-		curMonth = String.valueOf(curMonthInt);
-		if (curMonthInt <= 9)
+		currentMonth = String.valueOf(currentMonthInt);
+		if (currentMonthInt <= 9)
 		{
-			curMonth = "0" + curMonthInt;
+			currentMonth = "0" + currentMonthInt;
 		}
-		String ret = ",-A01." + curMonth + "." + curYear;
+		String ret = ",-A01." + currentMonth + "." + curYearStr;
 		return ret;
 	}
 
 	/**
+	 * ----TESTWEISE IMPLEMENTIERT------
+	 * 
 	 * Login DHBW Lörrach
 	 * 
 	 * @param url
