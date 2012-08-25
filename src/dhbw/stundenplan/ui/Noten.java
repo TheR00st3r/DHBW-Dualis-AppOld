@@ -16,10 +16,6 @@ import android.widget.TableRow;
 import android.widget.Toast;
 import dhbw.stundenplan.Online;
 import dhbw.stundenplan.R;
-import dhbw.stundenplan.R.array;
-import dhbw.stundenplan.R.drawable;
-import dhbw.stundenplan.R.id;
-import dhbw.stundenplan.R.layout;
 import dhbw.stundenplan.database.ResultsDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 import dhbw.stundenplan.ui.element.OptionActivity;
@@ -112,6 +108,7 @@ public class Noten extends OptionActivity
 	 */
 	public void schreibeErgebnisseNeu()
 	{
+		_TableLayout.removeAllViews();
 		ResultsDBAdapter resultsDBAdapter = new ResultsDBAdapter(_Context);
 		
 		TableRow tableHead = new TableRow(_Context);
@@ -185,9 +182,7 @@ public class Noten extends OptionActivity
 				userDBAdapter.close();
 
 				Online online = new Online();
-				// publishProgress(50);
 				online.saveResultsToDB(username, password, _Context);
-				// publishProgress(100);
 				internetConnection = true;
 			}
 			else
