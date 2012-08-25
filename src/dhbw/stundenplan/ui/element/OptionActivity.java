@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import dhbw.stundenplan.R;

@@ -14,7 +14,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/black" />
 
-    <dhbw.stundenplan.us.gorges.TwoDScrollView
+    <dhbw.stundenplan.ui.element.TwoDScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
         
-	</dhbw.stundenplan.us.gorges.TwoDScrollView>
+	</dhbw.stundenplan.ui.element.TwoDScrollView>
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"

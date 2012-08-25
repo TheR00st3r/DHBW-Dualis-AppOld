@@ -65,7 +65,6 @@ public class Online
 	{
 		int tryNumber = 0;
 		while (_Args == null && tryNumber < MAX_LOGIN)
-			;
 		{
 			_Args = login(username, password);
 			tryNumber++;
@@ -140,7 +139,6 @@ public class Online
 	{
 		int tryNumber = 0;
 		while (_Args == null && tryNumber < MAX_LOGIN)
-			;
 		{
 			_Args = login(username, password);
 			tryNumber++;

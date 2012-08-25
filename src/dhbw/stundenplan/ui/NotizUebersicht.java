@@ -14,10 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import dhbw.stundenplan.R;
-import dhbw.stundenplan.R.drawable;
-import dhbw.stundenplan.R.id;
-import dhbw.stundenplan.R.layout;
-import dhbw.stundenplan.R.style;
 import dhbw.stundenplan.database.TerminNotizDBAdapter;
 
 /**

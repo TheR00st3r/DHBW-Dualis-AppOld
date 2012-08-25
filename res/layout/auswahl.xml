@@ -9,7 +9,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="97dp"
-        android:onClick="show"
+        android:onClick="showWeekly"
         android:text="@string/wochenansicht" />
 
     <Button

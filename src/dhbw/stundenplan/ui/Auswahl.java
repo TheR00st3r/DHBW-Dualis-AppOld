@@ -11,6 +11,7 @@ public class Auswahl extends OptionActivity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.auswahl);
 		
 	}
@@ -18,6 +19,7 @@ public class Auswahl extends OptionActivity
 	
 	public void showWeekly(View view)
 	{
+		ladeTermineInHash();
 		intent.setClass(this, Wochenansicht.class);
 		startActivity(intent);
 	}

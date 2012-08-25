@@ -24,10 +24,6 @@ import android.widget.Toast;
 import dhbw.stundenplan.Online;
 import dhbw.stundenplan.R;
 import dhbw.stundenplan.Settings;
-import dhbw.stundenplan.R.array;
-import dhbw.stundenplan.R.id;
-import dhbw.stundenplan.R.layout;
-import dhbw.stundenplan.R.menu;
 import dhbw.stundenplan.database.TerminDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 import dhbw.stundenplan.google.GoogleKalender;
@@ -41,8 +37,7 @@ import dhbw.stundenplan.ui.element.OptionActivity;
  */
 public class Login extends OptionActivity
 {
-	Context context;
-	Activity activity;
+	private Context _Context;
 	Button button1, button2;
 
 	// Info zu DUALIS_KALENDER_REGEXP: In der ersten Klammer steht der Tag und
@@ -58,11 +53,10 @@ public class Login extends OptionActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		context = this;
-		activity = this;
+		_Context = this;
 		intent.setClass(this, Wochenansicht.class);
 
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_Context);
 		Spinner spinner = (Spinner) findViewById(R.id.hochschulauswahl);
 		spinner.setSelection(Integer.parseInt(sharedPrefs.getString("lastSpinnerValue", "0")), true);
 		CheckBox cb = (CheckBox) findViewById(R.id.checkBox1);
@@ -111,7 +105,7 @@ public class Login extends OptionActivity
 		final UserDBAdapter userDBAdapter = new UserDBAdapter(view.getContext());
 		userDBAdapter.newUser(username.getText().toString() + "@" + getResources().getStringArray(R.array.hochschuldomain)[spinner.getSelectedItemPosition()], passwort.getText().toString());
 		userDBAdapter.close();
-		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_Context);
 		SharedPreferences.Editor editor = sharedPrefs.edit();
 		editor.putString("lastSpinnerValue", String.valueOf(spinner.getSelectedItemPosition()));
 		editor.commit();
@@ -140,7 +134,7 @@ public class Login extends OptionActivity
 	{
 		if (progressDialog == null)
 		{
-			progressDialog = new ProgressDialog(context);
+			progressDialog = new ProgressDialog(_Context);
 		}
 		// progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -198,16 +192,16 @@ public class Login extends OptionActivity
 			if (checkInternetConnection())
 			{
 
-				final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+				final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(_Context);
 				final String anzahlMonate = sharedPrefs.getString("anzahlmonate", "2");
 
-				UserDBAdapter userDBAdapter = new UserDBAdapter(context);
+				UserDBAdapter userDBAdapter = new UserDBAdapter(_Context);
 				final String password = userDBAdapter.getPassword();
 				final String username = userDBAdapter.getUsername();
 				userDBAdapter.close();
 
 				Online online = new Online();
-				if (online.saveAppointmentToDB(username, password, Integer.parseInt(anzahlMonate), context))
+				if (online.saveAppointmentToDB(username, password, Integer.parseInt(anzahlMonate), _Context))
 				{
 					ladeTermineInHash();
 					loginKorrekt = true;
@@ -219,7 +213,7 @@ public class Login extends OptionActivity
 			}
 			else
 			{
-				Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_Context, "No Internet Connection", Toast.LENGTH_SHORT).show();
 			}
 			return null;
 		}
@@ -228,12 +222,12 @@ public class Login extends OptionActivity
 		{
 			if (loginKorrekt)
 			{
-				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(_Context);
 				if (sharedPreferences.getBoolean("googleCalendarSync", false))
 				{
 					showDialog("Lade Termine in Googlekalender");
 
-					OAuthManager.getInstance().doLogin(true, activity, new OAuthManager.AuthHandler()
+					OAuthManager.getInstance().doLogin(true,(Activity) _Context, new OAuthManager.AuthHandler()
 					{
 
 						public void handleAuth(Account accountU, String authTokenU)
@@ -248,7 +242,7 @@ public class Login extends OptionActivity
 				}
 				else
 				{
-					intent.setClass(context, Wochenansicht.class);
+					intent.setClass(_Context, Wochenansicht.class);
 					startActivityForResult(intent, 0);
 					finish();
 				}
@@ -256,7 +250,7 @@ public class Login extends OptionActivity
 			else
 			{
 
-				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal �berpr�fen.", Toast.LENGTH_LONG).show();
+				Toast.makeText(_Context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal �berpr�fen.", Toast.LENGTH_LONG).show();
 				closeDialog();
 
 			}
@@ -282,7 +276,7 @@ public class Login extends OptionActivity
 			Looper.prepare();
 			if (checkInternetConnection())
 			{
-				UserDBAdapter userDBAdapter = new UserDBAdapter(context);
+				UserDBAdapter userDBAdapter = new UserDBAdapter(_Context);
 				final String password = userDBAdapter.getPassword();
 				final String username = userDBAdapter.getUsername();
 				userDBAdapter.close();
@@ -301,7 +295,7 @@ public class Login extends OptionActivity
 			}
 			else
 			{
-				Toast.makeText(context, "No Internet Connection", Toast.LENGTH_SHORT).show();
+				Toast.makeText(_Context, "No Internet Connection", Toast.LENGTH_SHORT).show();
 			}
 			return null;
 		}
@@ -311,7 +305,7 @@ public class Login extends OptionActivity
 			if (loginKorrekt)
 			{
 				ladeTermineInHash();
-				intent.setClass(context, Wochenansicht.class);
+				intent.setClass(_Context, Wochenansicht.class);
 				startActivity(intent);
 				closeDialog();
 				finish();
@@ -319,7 +313,7 @@ public class Login extends OptionActivity
 			else
 			{
 				closeDialog();
-				Toast.makeText(context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal �berpr�fen.", Toast.LENGTH_LONG).show();
+				Toast.makeText(_Context, "Passwort, Username oder DH-Standort falsch. Bitte nocheinmal �berpr�fen.", Toast.LENGTH_LONG).show();
 			}
 		}
 
@@ -347,7 +341,7 @@ public class Login extends OptionActivity
 			Looper.prepare();
 			if (checkInternetConnection())
 			{
-				googleKalender = new GoogleKalender(context);
+				googleKalender = new GoogleKalender(_Context);
 				googleKalender.writeAppointmentsToGoogleCalendar(account, authToken);// schreibeTermineInKalender();
 
 				internetConnection = true;
@@ -367,7 +361,7 @@ public class Login extends OptionActivity
 			}
 			if (internetConnection)
 			{
-				intent.setClass(context, Wochenansicht.class);
+				intent.setClass(_Context, Wochenansicht.class);
 				startActivityForResult(intent, 0);
 				closeDialog();
 				finish();
