@@ -48,6 +48,8 @@
         	      android:theme="@style/Theme.NoTitleBar.Dialog"></activity>
     	<activity android:name=".ui.NotizUebersicht"
     	    	  android:theme="@style/Theme.NoTitleBar.Dialog"></activity>
+    	<activity android:name=".ui.Auswahl"
+            	  android:theme="@android:style/Theme.NoTitleBar"></activity>
     </application>
     
     

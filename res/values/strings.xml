@@ -35,6 +35,8 @@
         <item >Credits</item>
         <item >Note</item>
     </string-array>
+        <string name="wochenansicht">Wochenansicht</string>
+        <string name="marks">Noten</string>
     
     
     

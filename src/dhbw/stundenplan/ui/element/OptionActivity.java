@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import dhbw.stundenplan.R;
@@ -21,6 +22,7 @@ public abstract class OptionActivity extends Activity
 {
 	protected Intent intent = new Intent();
 	protected Context _Context;
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)

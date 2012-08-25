@@ -10,7 +10,6 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import dhbw.stundenplan.R;
-import dhbw.stundenplan.R.layout;
 import dhbw.stundenplan.database.TerminDBAdapter;
 import dhbw.stundenplan.database.UserDBAdapter;
 
@@ -62,7 +61,7 @@ public class StundenplanAppActivity extends Activity
 					if (i != 0)
 					{
 						intent = new Intent();
-						intent.setClass(sPlashScreen, Wochenansicht.class);
+						intent.setClass(sPlashScreen, Auswahl.class);
 						ladeTermineInHash();
 						synchronized (this)
 						{
